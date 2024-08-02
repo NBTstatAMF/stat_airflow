@@ -1,0 +1,51 @@
+[2024-07-08T07:25:01.122+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-08T07:20:00+00:00 [queued]>
+[2024-07-08T07:25:01.130+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-08T07:20:00+00:00 [queued]>
+[2024-07-08T07:25:01.130+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-08T07:25:01.145+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): task_validate_submissions> on 2024-07-08 07:20:00+00:00
+[2024-07-08T07:25:01.152+0000] {standard_task_runner.py:57} INFO - Started process 4706 to run task
+[2024-07-08T07:25:01.158+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'task_validate_submissions', 'scheduled__2024-07-08T07:20:00+00:00', '--job-id', '3599', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmpzdm974bs']
+[2024-07-08T07:25:01.161+0000] {standard_task_runner.py:85} INFO - Job 3599: Subtask task_validate_submissions
+[2024-07-08T07:25:01.239+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-08T07:20:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-08T07:25:01.350+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='task_validate_submissions' AIRFLOW_CTX_EXECUTION_DATE='2024-07-08T07:20:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-08T07:20:00+00:00'
+[2024-07-08T07:25:01.352+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-08T07:25:01.371+0000] {logging_mixin.py:151} INFO - 2024-01-31 00:00:00
+[2024-07-08T07:25:01.371+0000] {logging_mixin.py:151} INFO - {'name': '1HK', 'version': 'v0', 'bic4': '0000', 'date': '2024-01-31 00:00:00'}
+[2024-07-08T07:25:01.372+0000] {logging_mixin.py:151} INFO - PostgreSQL connection is closed
+[2024-07-08T07:25:01.372+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-07-08T07:25:01.384+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=task_validate_submissions, execution_date=20240708T072000, start_date=20240708T072501, end_date=20240708T072501
+[2024-07-08T07:25:01.415+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-08T07:25:01.436+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-07-08T10:22:32.890+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-08T07:20:00+00:00 [queued]>
+[2024-07-08T10:22:32.898+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-08T07:20:00+00:00 [queued]>
+[2024-07-08T10:22:32.898+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-08T10:22:32.911+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): task_validate_submissions> on 2024-07-08 07:20:00+00:00
+[2024-07-08T10:22:32.917+0000] {standard_task_runner.py:57} INFO - Started process 8121 to run task
+[2024-07-08T10:22:32.922+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'task_validate_submissions', 'scheduled__2024-07-08T07:20:00+00:00', '--job-id', '3827', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmp2qmkcazk']
+[2024-07-08T10:22:32.926+0000] {standard_task_runner.py:85} INFO - Job 3827: Subtask task_validate_submissions
+[2024-07-08T10:22:32.989+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-08T07:20:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-08T10:22:33.070+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='task_validate_submissions' AIRFLOW_CTX_EXECUTION_DATE='2024-07-08T07:20:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-08T07:20:00+00:00'
+[2024-07-08T10:22:33.088+0000] {logging_mixin.py:151} INFO - (1, '+OK 1 1720002855705013288', 'khalimzod@list.ru_374_2024-07-03 12:20:28.539851_<000701dacd34$7fa4a120$7eede360$@nbt.tj>', datetime.datetime(2024, 7, 3, 15, 33, 52, tzinfo=datetime.timezone.utc), datetime.datetime(2024, 7, 3, 12, 20, 29, tzinfo=datetime.timezone.utc), 'Халимзод Исмоил Абдурахмон <ihalimzod@nbt.tj>', 1, 1)
+[2024-07-08T10:22:33.090+0000] {logging_mixin.py:151} INFO - 2024-01-31 00:00:00
+[2024-07-08T10:22:33.090+0000] {logging_mixin.py:151} INFO - {'name': '1HK', 'version': 'v0', 'bic4': '0000', 'date': '2024-01-31 00:00:00'}
+[2024-07-08T10:22:33.091+0000] {logging_mixin.py:151} INFO - PostgreSQL connection is closed
+[2024-07-08T10:22:33.091+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-07-08T10:22:33.104+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=task_validate_submissions, execution_date=20240708T072000, start_date=20240708T102232, end_date=20240708T102233
+[2024-07-08T10:22:33.135+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-08T10:22:33.203+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-07-08T10:27:22.722+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-08T07:20:00+00:00 [queued]>
+[2024-07-08T10:27:22.747+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-08T07:20:00+00:00 [queued]>
+[2024-07-08T10:27:22.748+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-08T10:27:22.773+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): task_validate_submissions> on 2024-07-08 07:20:00+00:00
+[2024-07-08T10:27:22.780+0000] {standard_task_runner.py:57} INFO - Started process 8818 to run task
+[2024-07-08T10:27:22.801+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'task_validate_submissions', 'scheduled__2024-07-08T07:20:00+00:00', '--job-id', '4034', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmpv9uo4t2t']
+[2024-07-08T10:27:22.809+0000] {standard_task_runner.py:85} INFO - Job 4034: Subtask task_validate_submissions
+[2024-07-08T10:27:22.948+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-08T07:20:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-08T10:27:23.121+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='task_validate_submissions' AIRFLOW_CTX_EXECUTION_DATE='2024-07-08T07:20:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-08T07:20:00+00:00'
+[2024-07-08T10:27:23.142+0000] {logging_mixin.py:151} INFO - (1, '+OK 1 1720002855705013288', 'khalimzod@list.ru_374_2024-07-03 12:20:28.539851_<000701dacd34$7fa4a120$7eede360$@nbt.tj>', datetime.datetime(2024, 7, 3, 15, 33, 52, tzinfo=datetime.timezone.utc), datetime.datetime(2024, 7, 3, 12, 20, 29, tzinfo=datetime.timezone.utc), 'Халимзод Исмоил Абдурахмон <ihalimzod@nbt.tj>', 1, 1)
+[2024-07-08T10:27:23.145+0000] {logging_mixin.py:151} INFO - 2024-01-31 00:00:00
+[2024-07-08T10:27:23.154+0000] {logging_mixin.py:151} INFO - {'name': '1HK', 'version': 'v0', 'bic4': '0000', 'date': '2024-01-31 00:00:00'}
+[2024-07-08T10:27:23.158+0000] {logging_mixin.py:151} INFO - PostgreSQL connection is closed
+[2024-07-08T10:27:23.158+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-07-08T10:27:23.170+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=task_validate_submissions, execution_date=20240708T072000, start_date=20240708T102722, end_date=20240708T102723
+[2024-07-08T10:27:23.211+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-08T10:27:23.244+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

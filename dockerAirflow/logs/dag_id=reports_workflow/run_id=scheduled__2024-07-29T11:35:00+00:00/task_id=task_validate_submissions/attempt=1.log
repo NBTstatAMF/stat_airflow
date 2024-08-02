@@ -1,0 +1,24 @@
+[2024-07-29T11:40:04.161+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-29T11:35:00+00:00 [queued]>
+[2024-07-29T11:40:04.169+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-29T11:35:00+00:00 [queued]>
+[2024-07-29T11:40:04.169+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-29T11:40:04.183+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): task_validate_submissions> on 2024-07-29 11:35:00+00:00
+[2024-07-29T11:40:04.188+0000] {standard_task_runner.py:57} INFO - Started process 7339 to run task
+[2024-07-29T11:40:04.194+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'task_validate_submissions', 'scheduled__2024-07-29T11:35:00+00:00', '--job-id', '243', '--raw', '--subdir', 'DAGS_FOLDER/dag_stat_report.py', '--cfg-path', '/tmp/tmpcgot3lg2']
+[2024-07-29T11:40:04.198+0000] {standard_task_runner.py:85} INFO - Job 243: Subtask task_validate_submissions
+[2024-07-29T11:40:04.257+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-29T11:35:00+00:00 [running]> on host 3fb5581aee62
+[2024-07-29T11:40:04.342+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='task_validate_submissions' AIRFLOW_CTX_EXECUTION_DATE='2024-07-29T11:35:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-29T11:35:00+00:00'
+[2024-07-29T11:40:04.344+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-29T11:40:04.356+0000] {logging_mixin.py:151} INFO - prinnnnnnnnnnnnnnnnt:  (3, 3, 1, '1HK.v0.5707.31122024.xlsx', <memory at 0x7fe8e0102280>, 'Дата и время получения файла -------------------- 2024-07-29 16:33:37\n\n Не найденна конфигурация по данному отчету\n количество найденных ошибок --------------------1', None)
+[2024-07-29T11:40:04.357+0000] {logging_mixin.py:151} INFO - 2024-12-31 00:00:00
+[2024-07-29T11:40:04.362+0000] {logging_mixin.py:151} INFO - (13, 1, 2, 23, 1, 9)
+[2024-07-29T11:40:04.373+0000] {logging_mixin.py:151} INFO - <openpyxl.workbook.workbook.Workbook object at 0x7fe8c9dd32b0>
+[2024-07-29T11:40:04.408+0000] {logging_mixin.py:151} WARNING - Traceback (most recent call last):
+[2024-07-29T11:40:04.408+0000] {logging_mixin.py:151} WARNING -   File "/opt/***/dags/library/validation_reports.py", line 272, in select_datas
+    arg2/123
+[2024-07-29T11:40:04.409+0000] {logging_mixin.py:151} WARNING - NameError: name 'arg2' is not defined
+[2024-07-29T11:40:04.409+0000] {logging_mixin.py:151} INFO - Списки l1 и l2 неодинаковые111 name 'arg2' is not defined None
+[2024-07-29T11:40:04.414+0000] {logging_mixin.py:151} INFO - PostgreSQL connection is closed
+[2024-07-29T11:40:04.414+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-07-29T11:40:04.432+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=task_validate_submissions, execution_date=20240729T113500, start_date=20240729T114004, end_date=20240729T114004
+[2024-07-29T11:40:04.485+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-29T11:40:04.516+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

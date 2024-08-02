@@ -1,0 +1,29 @@
+[2024-07-30T11:40:03.500+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-30T11:35:00+00:00 [queued]>
+[2024-07-30T11:40:03.508+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-30T11:35:00+00:00 [queued]>
+[2024-07-30T11:40:03.509+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-30T11:40:03.522+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): task_validate_submissions> on 2024-07-30 11:35:00+00:00
+[2024-07-30T11:40:03.527+0000] {standard_task_runner.py:57} INFO - Started process 76 to run task
+[2024-07-30T11:40:03.534+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'task_validate_submissions', 'scheduled__2024-07-30T11:35:00+00:00', '--job-id', '420', '--raw', '--subdir', 'DAGS_FOLDER/dag_stat_report.py', '--cfg-path', '/tmp/tmpm90rmgsw']
+[2024-07-30T11:40:03.538+0000] {standard_task_runner.py:85} INFO - Job 420: Subtask task_validate_submissions
+[2024-07-30T11:40:03.602+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.task_validate_submissions scheduled__2024-07-30T11:35:00+00:00 [running]> on host 6bb718ab9b8f
+[2024-07-30T11:40:03.782+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='task_validate_submissions' AIRFLOW_CTX_EXECUTION_DATE='2024-07-30T11:35:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-30T11:35:00+00:00'
+[2024-07-30T11:40:03.784+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-30T11:40:03.874+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_stat_report.py", line 50, in validate_submissions
+    get_hello()
+  File "/opt/airflow/dags/library/validation_reports.py", line 30, in get_hello
+    connection = psycopg2.connect(user=db_user,
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgresql-postgres_omor-1" to address: Name or service not known
+
+[2024-07-30T11:40:03.892+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=reports_workflow, task_id=task_validate_submissions, execution_date=20240730T113500, start_date=20240730T114003, end_date=20240730T114003
+[2024-07-30T11:40:03.983+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 420 for task task_validate_submissions (could not translate host name "postgresql-postgres_omor-1" to address: Name or service not known
+; 76)
+[2024-07-30T11:40:04.024+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-07-30T11:40:04.050+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

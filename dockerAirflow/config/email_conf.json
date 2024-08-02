@@ -1,0 +1,23 @@
+{
+    "fetch_protocol": "pop3",
+    "imap_email_host": "imap.mail.ru",
+    "imap_email_port": 993,
+    "pop3_email_host": "pop.mail.ru",
+    "pop3_email_port": 995,
+    "smtp_email_host": "smtp.mail.ru",
+    "smtp_email_port": 465,  
+    "login": "khalimzod@list.ru",
+    "password": "GRXQRjC2bk4qZHB26Uqd",
+    "max_emails_to_fetch": 10, 
+    "allowed_file_formats": [
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "text/csv"
+    ],
+    "file_name_pattern": "\\d{1}\\w{1,3}\\.[vV]\\d{1,2}\\.\\d{4}\\.\\d{2}\\d{2}\\d{4}\\.xlsx",
+    "db_host": "postgresql-postgres_omor-1",
+    "db_name": "db_stat_dep",
+    "db_port": "5432",
+    "db_user": "docker",
+    "db_pass": "stat4omor"
+}

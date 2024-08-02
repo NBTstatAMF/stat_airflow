@@ -1,0 +1,51 @@
+[2024-08-01T11:25:04.974+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-08-01T11:20:00+00:00 [queued]>
+[2024-08-01T11:25:04.981+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-08-01T11:20:00+00:00 [queued]>
+[2024-08-01T11:25:04.981+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-08-01T11:25:04.992+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_send_emails> on 2024-08-01 11:20:00+00:00
+[2024-08-01T11:25:04.996+0000] {standard_task_runner.py:57} INFO - Started process 47191 to run task
+[2024-08-01T11:25:05.005+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_send_emails', 'scheduled__2024-08-01T11:20:00+00:00', '--job-id', '1463', '--raw', '--subdir', 'DAGS_FOLDER/dag_stat_report.py', '--cfg-path', '/tmp/tmpudb9aokf']
+[2024-08-01T11:25:05.011+0000] {standard_task_runner.py:85} INFO - Job 1463: Subtask id_task_send_emails
+[2024-08-01T11:25:05.118+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-08-01T11:20:00+00:00 [running]> on host 6bb718ab9b8f
+[2024-08-01T11:25:05.245+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_send_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-08-01T11:20:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-08-01T11:20:00+00:00'
+[2024-08-01T11:25:05.246+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-08-01T11:25:05.247+0000] {logging_mixin.py:151} INFO - #>2024-08-01 11:25:05.247389_User@StatDep: EmailRobot in screated.
+[2024-08-01T11:25:05.247+0000] {logging_mixin.py:151} INFO - #>2024-08-01 11:25:05.247581_User@StatDep: send_validation_results is started...
+[2024-08-01T11:25:05.258+0000] {logging_mixin.py:151} INFO -    #>2024-08-01 11:25:05.258140_conneciton to db is set.
+[2024-08-01T11:25:05.259+0000] {logging_mixin.py:151} INFO -    #>2024-08-01 11:25:05.259642_cursor execution is successful.
+[2024-08-01T11:25:05.259+0000] {logging_mixin.py:151} INFO -    extracted information for about report sumbissions found...
+[2024-08-01T11:25:05.261+0000] {logging_mixin.py:151} INFO - #>2024-08-01 11:25:05.261811_User@StatDep: email object ready to be sent:
+[2024-08-01T11:25:05.805+0000] {logging_mixin.py:151} WARNING - send: 'ehlo [172.19.0.5]\r\n'
+[2024-08-01T11:25:05.896+0000] {logging_mixin.py:151} WARNING - reply: b'250-smtp35.i.mail.ru\r\n'
+[2024-08-01T11:25:05.896+0000] {logging_mixin.py:151} WARNING - reply: b'250-SIZE 73400320\r\n'
+[2024-08-01T11:25:05.897+0000] {logging_mixin.py:151} WARNING - reply: b'250-8BITMIME\r\n'
+[2024-08-01T11:25:05.897+0000] {logging_mixin.py:151} WARNING - reply: b'250-PIPELINING\r\n'
+[2024-08-01T11:25:05.897+0000] {logging_mixin.py:151} WARNING - reply: b'250-DSN\r\n'
+[2024-08-01T11:25:05.898+0000] {logging_mixin.py:151} WARNING - reply: b'250-SMTPUTF8\r\n'
+[2024-08-01T11:25:05.898+0000] {logging_mixin.py:151} WARNING - reply: b'250 AUTH PLAIN LOGIN XOAUTH2\r\n'
+[2024-08-01T11:25:05.898+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'smtp35.i.mail.ru\nSIZE 73400320\n8BITMIME\nPIPELINING\nDSN\nSMTPUTF8\nAUTH PLAIN LOGIN XOAUTH2'
+[2024-08-01T11:25:05.899+0000] {logging_mixin.py:151} WARNING - send: 'AUTH PLAIN AGtoYWxpbXpvZEBsaXN0LnJ1AEdSWFFSakMyYms0cVpIQjI2VXFk\r\n'
+[2024-08-01T11:25:06.112+0000] {logging_mixin.py:151} WARNING - reply: b'235 Authentication succeeded\r\n'
+[2024-08-01T11:25:06.113+0000] {logging_mixin.py:151} WARNING - reply: retcode (235); Msg: b'Authentication succeeded'
+[2024-08-01T11:25:06.117+0000] {logging_mixin.py:151} WARNING - send: 'mail FROM:<khalimzod@list.ru> size=2390\r\n'
+[2024-08-01T11:25:06.193+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK\r\n'
+[2024-08-01T11:25:06.193+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK'
+[2024-08-01T11:25:06.194+0000] {logging_mixin.py:151} WARNING - send: 'rcpt TO:<3d_0001@mail.ru>\r\n'
+[2024-08-01T11:25:06.269+0000] {logging_mixin.py:151} WARNING - reply: b'250 Accepted\r\n'
+[2024-08-01T11:25:06.269+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'Accepted'
+[2024-08-01T11:25:06.269+0000] {logging_mixin.py:151} WARNING - send: 'data\r\n'
+[2024-08-01T11:25:06.345+0000] {logging_mixin.py:151} WARNING - reply: b'354 Enter message, ending with "." on a line by itself\r\n'
+[2024-08-01T11:25:06.346+0000] {logging_mixin.py:151} WARNING - reply: retcode (354); Msg: b'Enter message, ending with "." on a line by itself'
+[2024-08-01T11:25:06.346+0000] {logging_mixin.py:151} WARNING - data: (354, b'Enter message, ending with "." on a line by itself')
+[2024-08-01T11:25:06.347+0000] {logging_mixin.py:151} WARNING - send: b'Content-Type: multipart/mixed; boundary="===============1331761801615144172=="\r\nMIME-Version: 1.0\r\nSubject: =?utf-8?b?b21vckBuYnQudGo6INGE0LDQudC7ICI0Sy52MC41NzA3LjMwMDYyMDI0Lnhsc3giINC30LDQs9GA0YPQttC10L3QvdGL0Lkg0LIgMjAyNC0wOC0wMSAxNDowMTozOCswMDowMCDQndCVINCf0KDQmNCd0K/Qog==?=\r\nFrom: khalimzod@list.ru\r\nTo: <3d_0001@mail.ru>\r\n\r\n--===============1331761801615144172==\r\nContent-Type: text/plain; charset="utf-8"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n\r\n0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1LCAKINCaINGB0L7QttCw0LvQtdC90LjRjiDRhNCw0LnQ\r\nuyDRgSDQuNC80LXQvdC10LwgNEsudjAuNTcwNy4zMDA2MjAyNC54bHN4LCDQt9Cw0LPRgNGD0LbQ\r\ntdC90L3Ri9C5INCyIDIwMjQtMDgtMDEgMTQ6MDE6MzgrMDA6MDAg0L3QtSDQsdGL0Lsg0L/RgNC4\r\n0L3Rj9GCINGB0LjRgdGC0LXQvNC+0Lkg0LDQstGC0L7QvNCw0YLQuNGH0LXRgdC60L7QuSDQvtCx\r\n0YDQsNCx0L7RgtC60LguINCf0L7QttCw0LvRg9C50YHRgtCwLCDQv9GA0L7QstC10YDRjNGC0LUg\r\n0LfQsNC/0L7Qu9C90LXQvdC40LUg0YTQsNC50LvQsC4gCiDQlNC+0L/QvtC70L3QuNGC0LXQu9GM\r\n0L3Ri9C1INGB0LLQtdC00LXQvdGM0Y8g0L/QviDQvtCx0L3QsNGA0YPQttC10L3QvdGL0Lwg0L7R\r\niNC40LHQutCw0Lwg0L/RgNC40LvQvtC20LXQvdC90Ysg0Log0L/QuNGB0YzQvNGDLgogQyDRg9Cy\r\n0LDQttC10L3QuNC10LwsIAog0JTQtdC/0LDRgNGC0LDQvNC10L3RgiDRgdGC0LDRgtC40YHRgtC4\r\n0LrQuCDQuCDQv9C70LDRgtC10LbQvdC+0LPQviDQsdCw0LvQsNC90YHQsCA=\r\n\r\n--===============1331761801615144172==\r\nMIME-Version: 1.0\r\nContent-Type: application/text/csv; charset="utf-8"\r\nContent-Transfer-Encoding: base64\r\nContent-Transfer-Encoding: base64\r\ncontent-disposition: attachment; filename="4K.v0.5707.30062024.xlsx_protocol.txt"\r\n\r\n0JTQsNGC0LAg0Lgg0LLRgNC10LzRjyDQv9C+0LvRg9GH0LXQvdC40Y8g0YTQsNC50LvQsCAtLS0t\r\nLS0tLS0tLS0tLS0tLS0tLSAyMDI0LTA4LTAxIDE2OjI0OjQzCgogCtCf0YDQvtCy0LXRgNC60LAg\r\n0Lgg0LLQsNC70LjQtNCw0YbQuNGPIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\r\nLS0g0LvQuNGB0YLQsCA0SyAKRjE2MjUtLS0tLS0tLdCSINGP0YfQtdC50LrQtSDRg9C60LDQt9Cw\r\n0L3QvdC+INGB0LvQuNGI0LrQvtC8INC00LvQuNC90L3QvtC1INC30L3QsNGH0LXQvdC40LUKRjE2\r\nMzQtLS0tLS0tLdCd0LXQstC10YDQvdGL0Lkg0YLQuNC/INC00LDQvdC90YvRhSDQsiDRj9GH0LXQ\r\nudC60LUKRzE2MzItLS0tLS0tLdCX0L3QsNGH0LXQvdC40LUg0L3QtSDQtNC+0LvQttC10L0g0LHR\r\ni9GC0Ywg0L7RgtGA0LjRhtCw0YLQtdC70YzQvdC+0LkK0LrQvtC70LjRh9C10YHRgtCy0L4g0L3Q\r\nsNC50LTQtdC90L3Ri9GFINC+0YjQuNCx0L7QuiDQvdCwINC70LjRgdGC0LUgLS0tLS0tLS0tLS0t\r\nLS0tLS0tLS0tLS0tLS0tMwoKCiDQutC+0LvQuNGH0LXRgdGC0LLRgyDQvdCw0LnQtNC10L3QvdGL\r\n0YUg0L7RiNC40LHQvtC6IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTM=\r\n\r\n--===============1331761801615144172==--\r\n.\r\n'
+[2024-08-01T11:25:07.106+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK id=1sZTve-00000000JlE-1H9O\r\n'
+[2024-08-01T11:25:07.106+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK id=1sZTve-00000000JlE-1H9O'
+[2024-08-01T11:25:07.106+0000] {logging_mixin.py:151} WARNING - data: (250, b'OK id=1sZTve-00000000JlE-1H9O')
+[2024-08-01T11:25:07.107+0000] {logging_mixin.py:151} INFO - #>2024-08-01 11:25:07.107070_User@StatDep: email successfuly sent
+[2024-08-01T11:25:07.107+0000] {logging_mixin.py:151} WARNING - send: 'QUIT\r\n'
+[2024-08-01T11:25:07.387+0000] {logging_mixin.py:151} WARNING - reply: b'221 exim-smtp-d7b56f84b-5drcg closing connection\r\n'
+[2024-08-01T11:25:07.388+0000] {logging_mixin.py:151} WARNING - reply: retcode (221); Msg: b'exim-smtp-d7b56f84b-5drcg closing connection'
+[2024-08-01T11:25:07.389+0000] {logging_mixin.py:151} INFO -    finilizing processing for the reserved file uploads...
+[2024-08-01T11:25:07.395+0000] {python.py:194} INFO - Done. Returned value was: True
+[2024-08-01T11:25:07.428+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=id_task_send_emails, execution_date=20240801T112000, start_date=20240801T112504, end_date=20240801T112507
+[2024-08-01T11:25:07.460+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-08-01T11:25:07.481+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

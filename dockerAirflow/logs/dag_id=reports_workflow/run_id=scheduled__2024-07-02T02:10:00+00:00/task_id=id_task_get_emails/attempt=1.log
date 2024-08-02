@@ -1,0 +1,82 @@
+[2024-07-03T09:56:45.621+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T02:10:00+00:00 [queued]>
+[2024-07-03T09:56:45.646+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T02:10:00+00:00 [queued]>
+[2024-07-03T09:56:45.647+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-03T09:56:45.698+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_get_emails> on 2024-07-02 02:10:00+00:00
+[2024-07-03T09:56:45.703+0000] {standard_task_runner.py:57} INFO - Started process 20367 to run task
+[2024-07-03T09:56:45.732+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_get_emails', 'scheduled__2024-07-02T02:10:00+00:00', '--job-id', '269', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmpbz128edo']
+[2024-07-03T09:56:45.733+0000] {standard_task_runner.py:85} INFO - Job 269: Subtask id_task_get_emails
+[2024-07-03T09:56:45.846+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T02:10:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-03T09:56:46.081+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_get_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-02T02:10:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-02T02:10:00+00:00'
+[2024-07-03T09:56:46.084+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-03T09:56:46.084+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_email_robot.py", line 22, in get_emails
+    email_conf = json.load (open(path / ("config/email_conf.json")))
+NameError: name 'json' is not defined
+[2024-07-03T09:56:46.118+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=reports_workflow, task_id=id_task_get_emails, execution_date=20240702T021000, start_date=20240703T095645, end_date=20240703T095646
+[2024-07-03T09:56:46.164+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 269 for task id_task_get_emails (name 'json' is not defined; 20367)
+[2024-07-03T09:56:46.215+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-07-03T09:56:46.252+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-07-03T12:04:26.382+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T02:10:00+00:00 [queued]>
+[2024-07-03T12:04:26.403+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T02:10:00+00:00 [queued]>
+[2024-07-03T12:04:26.403+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-03T12:04:26.491+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_get_emails> on 2024-07-02 02:10:00+00:00
+[2024-07-03T12:04:26.498+0000] {standard_task_runner.py:57} INFO - Started process 23196 to run task
+[2024-07-03T12:04:26.504+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_get_emails', 'scheduled__2024-07-02T02:10:00+00:00', '--job-id', '712', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmpidy_zev8']
+[2024-07-03T12:04:26.505+0000] {standard_task_runner.py:85} INFO - Job 712: Subtask id_task_get_emails
+[2024-07-03T12:04:26.587+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T02:10:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-03T12:04:26.719+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_get_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-02T02:10:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-02T02:10:00+00:00'
+[2024-07-03T12:04:26.723+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-03T12:04:26.723+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:04:26.723774_User@StatDep: EmailRobot in screated.
+[2024-07-03T12:04:26.724+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:04:26.724216_User@StatDep: get_for_recent_emails is started...
+[2024-07-03T12:04:26.724+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:04:26.724560_User@StatDep: pop3_fetch_emails isstarted...
+[2024-07-03T12:04:27.095+0000] {logging_mixin.py:151} INFO -    b'+OK'
+[2024-07-03T12:04:27.472+0000] {logging_mixin.py:151} INFO -    mailbox have 1 emails and the robot can process 10
+[2024-07-03T12:04:27.862+0000] {logging_mixin.py:151} INFO -    #>2024-07-03 12:04:27.862475_conneciton to db is set.
+[2024-07-03T12:04:27.867+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_email_robot.py", line 25, in get_emails
+    robot.fetch_emails()
+  File "/opt/airflow/dags/emailRobot.py", line 62, in fetch_emails
+    return self.pop3_fetch_emails()
+  File "/opt/airflow/dags/emailRobot.py", line 156, in pop3_fetch_emails
+    cursor.execute (query, insert_values)
+psycopg2.errors.UndefinedTable: relation "sma_stat_dep.tbl_file_upload" does not exist
+LINE 1: ...) AS (INSERT INTO                                 sma_stat_d...
+                                                             ^
+
+[2024-07-03T12:04:27.880+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=reports_workflow, task_id=id_task_get_emails, execution_date=20240702T021000, start_date=20240703T120426, end_date=20240703T120427
+[2024-07-03T12:04:27.893+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 712 for task id_task_get_emails (relation "sma_stat_dep.tbl_file_upload" does not exist
+LINE 1: ...) AS (INSERT INTO                                 sma_stat_d...
+                                                             ^
+; 23196)
+[2024-07-03T12:04:27.932+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-07-03T12:04:27.961+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-07-03T12:21:00.276+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T02:10:00+00:00 [queued]>
+[2024-07-03T12:21:00.535+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T02:10:00+00:00 [queued]>
+[2024-07-03T12:21:00.536+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-03T12:21:00.561+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_get_emails> on 2024-07-02 02:10:00+00:00
+[2024-07-03T12:21:00.609+0000] {standard_task_runner.py:57} INFO - Started process 23901 to run task
+[2024-07-03T12:21:00.631+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_get_emails', 'scheduled__2024-07-02T02:10:00+00:00', '--job-id', '939', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmpy8_o4a0y']
+[2024-07-03T12:21:00.632+0000] {standard_task_runner.py:85} INFO - Job 939: Subtask id_task_get_emails
+[2024-07-03T12:21:00.846+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T02:10:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-03T12:21:01.020+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_get_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-02T02:10:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-02T02:10:00+00:00'
+[2024-07-03T12:21:01.021+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-03T12:21:01.021+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:21:01.021517_User@StatDep: EmailRobot in screated.
+[2024-07-03T12:21:01.021+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:21:01.021712_User@StatDep: get_for_recent_emails is started...
+[2024-07-03T12:21:01.021+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:21:01.021862_User@StatDep: pop3_fetch_emails isstarted...
+[2024-07-03T12:21:01.439+0000] {logging_mixin.py:151} INFO -    b'+OK'
+[2024-07-03T12:21:01.753+0000] {logging_mixin.py:151} INFO -    mailbox have 0 emails and the robot can process 10
+[2024-07-03T12:21:01.753+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:21:01.753824_User@StatDep: no emails to process, exiting pop3_fetch_emails()...
+[2024-07-03T12:21:01.754+0000] {python.py:194} INFO - Done. Returned value was: True
+[2024-07-03T12:21:01.811+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=id_task_get_emails, execution_date=20240702T021000, start_date=20240703T122100, end_date=20240703T122101
+[2024-07-03T12:21:01.874+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-03T12:21:01.917+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check

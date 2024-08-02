@@ -1,0 +1,33 @@
+[2024-07-29T03:56:11.488+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions manual__2024-07-29T03:56:09.731301+00:00 [queued]>
+[2024-07-29T03:56:11.496+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.task_validate_submissions manual__2024-07-29T03:56:09.731301+00:00 [queued]>
+[2024-07-29T03:56:11.496+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-29T03:56:11.507+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): task_validate_submissions> on 2024-07-29 03:56:09.731301+00:00
+[2024-07-29T03:56:11.513+0000] {standard_task_runner.py:57} INFO - Started process 83060 to run task
+[2024-07-29T03:56:11.522+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'task_validate_submissions', 'manual__2024-07-29T03:56:09.731301+00:00', '--job-id', '8375', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmpbtsr7a53']
+[2024-07-29T03:56:11.528+0000] {standard_task_runner.py:85} INFO - Job 8375: Subtask task_validate_submissions
+[2024-07-29T03:56:11.945+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.task_validate_submissions manual__2024-07-29T03:56:09.731301+00:00 [running]> on host 6f4ef5488251
+[2024-07-29T03:56:12.221+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='task_validate_submissions' AIRFLOW_CTX_EXECUTION_DATE='2024-07-29T03:56:09.731301+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-07-29T03:56:09.731301+00:00'
+[2024-07-29T03:56:12.222+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-29T03:56:12.239+0000] {logging_mixin.py:151} INFO - prinnnnnnnnnnnnnnnnt:  (23, 22, 1, '1HK.v0.1626.31012024.xlsx', <memory at 0x7f8a1b618dc0>, None, None)
+[2024-07-29T03:56:12.242+0000] {logging_mixin.py:151} INFO - 2024-01-31 00:00:00
+[2024-07-29T03:56:12.246+0000] {logging_mixin.py:151} INFO - (2, 1, 2, 11, 1, 8)
+[2024-07-29T03:56:12.286+0000] {logging_mixin.py:151} WARNING - Traceback (most recent call last):
+[2024-07-29T03:56:12.287+0000] {logging_mixin.py:151} WARNING -   File "/opt/***/dags/library/validation_reports.py", line 204, in select_datas
+    print(openpyxl.load_workbook(workbook_xml))
+[2024-07-29T03:56:12.288+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/openpyxl/reader/excel.py", line 344, in load_workbook
+    reader = ExcelReader(filename, read_only, keep_vba,
+[2024-07-29T03:56:12.288+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/openpyxl/reader/excel.py", line 123, in __init__
+    self.archive = _validate_archive(fn)
+[2024-07-29T03:56:12.289+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/openpyxl/reader/excel.py", line 95, in _validate_archive
+    archive = ZipFile(filename, 'r')
+[2024-07-29T03:56:12.290+0000] {logging_mixin.py:151} WARNING -   File "/usr/local/lib/python3.8/zipfile.py", line 1269, in __init__
+    self._RealGetContents()
+[2024-07-29T03:56:12.291+0000] {logging_mixin.py:151} WARNING -   File "/usr/local/lib/python3.8/zipfile.py", line 1336, in _RealGetContents
+    raise BadZipFile("File is not a zip file")
+[2024-07-29T03:56:12.292+0000] {logging_mixin.py:151} WARNING - zipfile.BadZipFile: File is not a zip file
+[2024-07-29T03:56:12.293+0000] {logging_mixin.py:151} INFO - Error while fetching data from PostgreSQL File is not a zip file None
+[2024-07-29T03:56:12.298+0000] {logging_mixin.py:151} INFO - PostgreSQL connection is closed
+[2024-07-29T03:56:12.298+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-07-29T03:56:12.323+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=task_validate_submissions, execution_date=20240729T035609, start_date=20240729T035611, end_date=20240729T035612
+[2024-07-29T03:56:12.375+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-29T03:56:12.404+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

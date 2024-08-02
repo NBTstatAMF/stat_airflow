@@ -1,0 +1,27 @@
+[2024-07-03T12:20:27.918+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails manual__2024-07-03T12:20:27.118545+00:00 [queued]>
+[2024-07-03T12:20:27.926+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails manual__2024-07-03T12:20:27.118545+00:00 [queued]>
+[2024-07-03T12:20:27.926+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-03T12:20:27.970+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_get_emails> on 2024-07-03 12:20:27.118545+00:00
+[2024-07-03T12:20:27.976+0000] {standard_task_runner.py:57} INFO - Started process 23811 to run task
+[2024-07-03T12:20:27.982+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_get_emails', 'manual__2024-07-03T12:20:27.118545+00:00', '--job-id', '898', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmp_1p0b8xu']
+[2024-07-03T12:20:27.983+0000] {standard_task_runner.py:85} INFO - Job 898: Subtask id_task_get_emails
+[2024-07-03T12:20:28.087+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_get_emails manual__2024-07-03T12:20:27.118545+00:00 [running]> on host 6f4ef5488251
+[2024-07-03T12:20:28.429+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_get_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-03T12:20:27.118545+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-07-03T12:20:27.118545+00:00'
+[2024-07-03T12:20:28.430+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-03T12:20:28.433+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:20:28.433795_User@StatDep: EmailRobot in screated.
+[2024-07-03T12:20:28.434+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:20:28.434016_User@StatDep: get_for_recent_emails is started...
+[2024-07-03T12:20:28.434+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:20:28.434145_User@StatDep: pop3_fetch_emails isstarted...
+[2024-07-03T12:20:28.988+0000] {logging_mixin.py:151} INFO -    b'+OK'
+[2024-07-03T12:20:29.439+0000] {logging_mixin.py:151} INFO -    mailbox have 1 emails and the robot can process 10
+[2024-07-03T12:20:29.929+0000] {logging_mixin.py:151} INFO -    #>2024-07-03 12:20:29.929705_conneciton to db is set.
+[2024-07-03T12:20:29.936+0000] {logging_mixin.py:151} INFO -    #>2024-07-03 12:20:29.936021_cursor execution is successful.
+[2024-07-03T12:20:29.937+0000] {logging_mixin.py:151} INFO -    Email from 2024-07-03 15:33:52,  Халимзод Исмоил Абдурахмон <ihalimzod@nbt.tj>  with statis 1 and attachement name 1HK.v0.0000.31012024.xlsx uploaded to db
+[2024-07-03T12:20:29.948+0000] {logging_mixin.py:151} INFO -    #>2024-07-03 12:20:29.948908_conneciton to db is set.
+[2024-07-03T12:20:29.954+0000] {logging_mixin.py:151} INFO -    #>2024-07-03 12:20:29.954833_cursor execution is successful.
+[2024-07-03T12:20:29.958+0000] {logging_mixin.py:151} INFO -    Email from 2024-07-03 15:33:52,  Халимзод Исмоил Абдурахмон <ihalimzod@nbt.tj>  with statis 5 and attachement name HK.v0.0000.31012024.xlsx uploaded to db
+[2024-07-03T12:20:30.045+0000] {logging_mixin.py:151} INFO -    deletion of email after inserting into database +OK message 1 deleted
+[2024-07-03T12:20:30.146+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:20:30.145951_User@StatDep: pop3_fetch_emails is successful.
+[2024-07-03T12:20:30.146+0000] {python.py:194} INFO - Done. Returned value was: True
+[2024-07-03T12:20:30.192+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=id_task_get_emails, execution_date=20240703T122027, start_date=20240703T122027, end_date=20240703T122030
+[2024-07-03T12:20:30.378+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-03T12:20:30.441+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check

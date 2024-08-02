@@ -1,0 +1,67 @@
+[2024-07-03T12:25:25.438+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-02T15:35:00+00:00 [queued]>
+[2024-07-03T12:25:25.446+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-02T15:35:00+00:00 [queued]>
+[2024-07-03T12:25:25.446+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-03T12:25:25.460+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_send_emails> on 2024-07-02 15:35:00+00:00
+[2024-07-03T12:25:25.464+0000] {standard_task_runner.py:57} INFO - Started process 24605 to run task
+[2024-07-03T12:25:25.469+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_send_emails', 'scheduled__2024-07-02T15:35:00+00:00', '--job-id', '1260', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmp_i19gtom']
+[2024-07-03T12:25:25.470+0000] {standard_task_runner.py:85} INFO - Job 1260: Subtask id_task_send_emails
+[2024-07-03T12:25:25.515+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-02T15:35:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-03T12:25:25.578+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_send_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-02T15:35:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-02T15:35:00+00:00'
+[2024-07-03T12:25:25.579+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-03T12:25:25.580+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:25:25.580032_User@StatDep: EmailRobot in screated.
+[2024-07-03T12:25:25.580+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:25:25.580206_User@StatDep: send_validation_results is started...
+[2024-07-03T12:25:25.588+0000] {logging_mixin.py:151} INFO -    #>2024-07-03 12:25:25.588745_conneciton to db is set.
+[2024-07-03T12:25:25.590+0000] {logging_mixin.py:151} INFO -    #>2024-07-03 12:25:25.590498_cursor execution is successful.
+[2024-07-03T12:25:25.590+0000] {logging_mixin.py:151} INFO -    extracted information for about report sumbissions found...
+[2024-07-03T12:27:47.973+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:27:47.972978_User@StatDep: email object ready to be sent:
+[2024-07-03T12:27:48.365+0000] {logging_mixin.py:151} WARNING - send: 'ehlo [172.20.0.6]\r\n'
+[2024-07-03T12:27:48.431+0000] {logging_mixin.py:151} WARNING - reply: b'250-smtp44.i.mail.ru\r\n'
+[2024-07-03T12:27:48.431+0000] {logging_mixin.py:151} WARNING - reply: b'250-SIZE 73400320\r\n'
+[2024-07-03T12:27:48.432+0000] {logging_mixin.py:151} WARNING - reply: b'250-8BITMIME\r\n'
+[2024-07-03T12:27:48.432+0000] {logging_mixin.py:151} WARNING - reply: b'250-PIPELINING\r\n'
+[2024-07-03T12:27:48.432+0000] {logging_mixin.py:151} WARNING - reply: b'250-DSN\r\n'
+[2024-07-03T12:27:48.432+0000] {logging_mixin.py:151} WARNING - reply: b'250-SMTPUTF8\r\n'
+[2024-07-03T12:27:48.432+0000] {logging_mixin.py:151} WARNING - reply: b'250 AUTH PLAIN LOGIN XOAUTH2\r\n'
+[2024-07-03T12:27:48.432+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'smtp44.i.mail.ru\nSIZE 73400320\n8BITMIME\nPIPELINING\nDSN\nSMTPUTF8\nAUTH PLAIN LOGIN XOAUTH2'
+[2024-07-03T12:27:48.433+0000] {logging_mixin.py:151} WARNING - send: 'AUTH PLAIN AGtoYWxpbXpvZEBsaXN0LnJ1AEdSWFFSakMyYms0cVpIQjI2VXFk\r\n'
+[2024-07-03T12:27:48.635+0000] {logging_mixin.py:151} WARNING - reply: b'235 Authentication succeeded\r\n'
+[2024-07-03T12:27:48.635+0000] {logging_mixin.py:151} WARNING - reply: retcode (235); Msg: b'Authentication succeeded'
+[2024-07-03T12:27:48.637+0000] {logging_mixin.py:151} WARNING - send: 'mail FROM:<khalimzod@list.ru> size=1366\r\n'
+[2024-07-03T12:27:48.703+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK\r\n'
+[2024-07-03T12:27:48.703+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK'
+[2024-07-03T12:27:48.703+0000] {logging_mixin.py:151} WARNING - send: 'rcpt TO:<ihalimzod@nbt.tj>\r\n'
+[2024-07-03T12:27:48.775+0000] {logging_mixin.py:151} WARNING - reply: b'250 Accepted\r\n'
+[2024-07-03T12:27:48.775+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'Accepted'
+[2024-07-03T12:27:48.775+0000] {logging_mixin.py:151} WARNING - send: 'data\r\n'
+[2024-07-03T12:27:48.840+0000] {logging_mixin.py:151} WARNING - reply: b'354 Enter message, ending with "." on a line by itself\r\n'
+[2024-07-03T12:27:48.840+0000] {logging_mixin.py:151} WARNING - reply: retcode (354); Msg: b'Enter message, ending with "." on a line by itself'
+[2024-07-03T12:27:48.841+0000] {logging_mixin.py:151} WARNING - data: (354, b'Enter message, ending with "." on a line by itself')
+[2024-07-03T12:27:48.841+0000] {logging_mixin.py:151} WARNING - send: b'Content-Type: multipart/mixed; boundary="===============4139291068629547168=="\r\nMIME-Version: 1.0\r\nSubject: =?utf-8?b?b21vckBuYnQudGo6INGE0LDQudC7IEhLLnYwLjAwMDAuMzEwMTIwMjQueGxzeCDQt9Cw0LPRgNGD0LbQtdC90L3Ri9C1INCyUDIgMjAyNC0wNy0wMyAxNTozMzo1MiswMDowMCDQndCVINCf0KDQmNCd0K/Qog==?=\r\nFrom: khalimzod@list.ru\r\nTo: =?utf-8?b?0KXQsNC70LjQvNC30L7QtCDQmNGB0LzQvtC40Lsg0JDQsdC00YPRgNCw0YXQvNC+0L0gPGloYWxpbXpvZEBuYnQudGo+?=\r\n\r\n--===============4139291068629547168==\r\nContent-Type: text/plain; charset="utf-8"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n\r\n0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1LCAKINCaINGB0L7QttCw0LvQtdC90LjRjiDRhNCw0LnQ\r\nuyDRgSDQuNC80LXQvdC10LwgSEsudjAuMDAwMC4zMTAxMjAyNC54bHN4LCDQt9Cw0LPRgNGD0LbQ\r\ntdC90L3Ri9C5INCyIDIwMjQtMDctMDMgMTU6MzM6NTIrMDA6MDAg0L3QtSDQsdGL0Lsg0L/RgNC4\r\n0L3Rj9GC0YHQuNGB0YLQtdC80L7QuSDQsNCy0YLQvtC80LDRgtC40YfQtdGB0LrQvtC5INC+0LHR\r\ngNCw0LHQvtGC0LrQuC4g0J/QvtC20LDQu9GD0LnRgdGC0LAsINC/0YDQvtCy0LXRgNGM0YLQtSDQ\r\nt9Cw0L/QvtC70L3QtdC90LjQtSDRhNCw0LnQu9CwLiAKINCU0L7Qv9C+0LvQvdC40YLQtdC70YzQ\r\nvdGL0LUg0YHQstC10LTQtdC90YzRjyDQv9C+INC+0LHQvdCw0YDRg9C20LXQvdC90YvQvCDQvtGI\r\n0LjQsdC60LDQvCDQv9GA0LjQu9C+0LbQtdC90L3RiyDQuiDQv9C40YHRjNC80YMuCiBDINGD0LLQ\r\nsNC20LXQvdC40LXQvCwgCiDQlNC10L/QsNGA0YLQsNC80LXQvdGCINGB0YLQsNGC0LjRgdGC0LjQ\r\nutC4INC4INC/0LvQsNGC0LXQttC90L7Qs9C+INCx0LDQu9Cw0L3RgdCwLiA=\r\n\r\n--===============4139291068629547168==--\r\n.\r\n'
+[2024-07-03T12:27:48.981+0000] {logging_mixin.py:151} WARNING - reply: b'550 your mailer sends invalid headers\r\n'
+[2024-07-03T12:27:48.982+0000] {logging_mixin.py:151} WARNING - reply: retcode (550); Msg: b'your mailer sends invalid headers'
+[2024-07-03T12:27:48.982+0000] {logging_mixin.py:151} WARNING - data: (550, b'your mailer sends invalid headers')
+[2024-07-03T12:27:48.983+0000] {logging_mixin.py:151} WARNING - send: 'rset\r\n'
+[2024-07-03T12:27:49.048+0000] {logging_mixin.py:151} WARNING - reply: b'250 Reset OK\r\n'
+[2024-07-03T12:27:49.048+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'Reset OK'
+[2024-07-03T12:27:49.048+0000] {logging_mixin.py:151} WARNING - send: 'QUIT\r\n'
+[2024-07-03T12:27:49.314+0000] {logging_mixin.py:151} WARNING - reply: b'221 exim-smtp-84f7fbf7d8-spdl2 closing connection\r\n'
+[2024-07-03T12:27:49.314+0000] {logging_mixin.py:151} WARNING - reply: retcode (221); Msg: b'exim-smtp-84f7fbf7d8-spdl2 closing connection'
+[2024-07-03T12:27:49.315+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_email_robot.py", line 37, in send_emails
+    robot.send_validation_results()
+  File "/opt/airflow/dags/emailRobot.py", line 276, in send_validation_results
+    self.send_message (address=address, subject=topic \
+  File "/opt/airflow/dags/emailRobot.py", line 321, in send_message
+    smtp.sendmail(from_addr= self.login, to_addrs=address \
+  File "/usr/local/lib/python3.8/smtplib.py", line 906, in sendmail
+    raise SMTPDataError(code, resp)
+smtplib.SMTPDataError: (550, b'your mailer sends invalid headers')
+[2024-07-03T12:27:49.330+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=reports_workflow, task_id=id_task_send_emails, execution_date=20240702T153500, start_date=20240703T122525, end_date=20240703T122749
+[2024-07-03T12:27:49.343+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 1260 for task id_task_send_emails ((550, b'your mailer sends invalid headers'); 24605)
+[2024-07-03T12:27:49.362+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-07-03T12:27:49.380+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

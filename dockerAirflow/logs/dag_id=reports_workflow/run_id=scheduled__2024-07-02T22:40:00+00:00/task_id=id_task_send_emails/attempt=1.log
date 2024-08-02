@@ -1,0 +1,144 @@
+[2024-07-03T13:38:51.495+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-02T22:40:00+00:00 [queued]>
+[2024-07-03T13:38:51.518+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-02T22:40:00+00:00 [queued]>
+[2024-07-03T13:38:51.518+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-03T13:38:51.542+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_send_emails> on 2024-07-02 22:40:00+00:00
+[2024-07-03T13:38:51.546+0000] {standard_task_runner.py:57} INFO - Started process 26065 to run task
+[2024-07-03T13:38:51.553+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_send_emails', 'scheduled__2024-07-02T22:40:00+00:00', '--job-id', '1431', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmp5xp3akw1']
+[2024-07-03T13:38:51.554+0000] {standard_task_runner.py:85} INFO - Job 1431: Subtask id_task_send_emails
+[2024-07-03T13:38:51.639+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-02T22:40:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-03T13:38:51.830+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_send_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-02T22:40:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-02T22:40:00+00:00'
+[2024-07-03T13:38:51.831+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-03T13:38:51.832+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:38:51.832409_User@StatDep: EmailRobot in screated.
+[2024-07-03T13:38:51.832+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:38:51.832623_User@StatDep: send_validation_results is started...
+[2024-07-03T13:38:51.844+0000] {logging_mixin.py:151} INFO -    #>2024-07-03 13:38:51.844314_conneciton to db is set.
+[2024-07-03T13:38:51.846+0000] {logging_mixin.py:151} INFO -    #>2024-07-03 13:38:51.846082_cursor execution is successful.
+[2024-07-03T13:38:51.846+0000] {logging_mixin.py:151} INFO -    extracted information for about report sumbissions found...
+[2024-07-03T13:39:24.329+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:39:24.328944_User@StatDep: email object ready to be sent:
+[2024-07-03T13:39:24.702+0000] {logging_mixin.py:151} WARNING - send: 'ehlo [172.20.0.6]\r\n'
+[2024-07-03T13:39:24.762+0000] {logging_mixin.py:151} WARNING - reply: b'250-smtp30.i.mail.ru\r\n'
+[2024-07-03T13:39:24.762+0000] {logging_mixin.py:151} WARNING - reply: b'250-SIZE 73400320\r\n'
+[2024-07-03T13:39:24.762+0000] {logging_mixin.py:151} WARNING - reply: b'250-8BITMIME\r\n'
+[2024-07-03T13:39:24.762+0000] {logging_mixin.py:151} WARNING - reply: b'250-PIPELINING\r\n'
+[2024-07-03T13:39:24.762+0000] {logging_mixin.py:151} WARNING - reply: b'250-DSN\r\n'
+[2024-07-03T13:39:24.763+0000] {logging_mixin.py:151} WARNING - reply: b'250-SMTPUTF8\r\n'
+[2024-07-03T13:39:24.763+0000] {logging_mixin.py:151} WARNING - reply: b'250 AUTH PLAIN LOGIN XOAUTH2\r\n'
+[2024-07-03T13:39:24.763+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'smtp30.i.mail.ru\nSIZE 73400320\n8BITMIME\nPIPELINING\nDSN\nSMTPUTF8\nAUTH PLAIN LOGIN XOAUTH2'
+[2024-07-03T13:39:24.763+0000] {logging_mixin.py:151} WARNING - send: 'AUTH PLAIN AGtoYWxpbXpvZEBsaXN0LnJ1AEdSWFFSakMyYms0cVpIQjI2VXFk\r\n'
+[2024-07-03T13:39:24.932+0000] {logging_mixin.py:151} WARNING - reply: b'235 Authentication succeeded\r\n'
+[2024-07-03T13:39:24.932+0000] {logging_mixin.py:151} WARNING - reply: retcode (235); Msg: b'Authentication succeeded'
+[2024-07-03T13:39:24.934+0000] {logging_mixin.py:151} WARNING - send: 'mail FROM:<khalimzod@list.ru> size=1305\r\n'
+[2024-07-03T13:39:24.996+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK\r\n'
+[2024-07-03T13:39:24.997+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK'
+[2024-07-03T13:39:24.997+0000] {logging_mixin.py:151} WARNING - send: 'rcpt TO:<firdavskhushkadamov@gmail.com>\r\n'
+[2024-07-03T13:39:25.085+0000] {logging_mixin.py:151} WARNING - reply: b'250 Accepted\r\n'
+[2024-07-03T13:39:25.086+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'Accepted'
+[2024-07-03T13:39:25.086+0000] {logging_mixin.py:151} WARNING - send: 'data\r\n'
+[2024-07-03T13:39:25.149+0000] {logging_mixin.py:151} WARNING - reply: b'354 Enter message, ending with "." on a line by itself\r\n'
+[2024-07-03T13:39:25.150+0000] {logging_mixin.py:151} WARNING - reply: retcode (354); Msg: b'Enter message, ending with "." on a line by itself'
+[2024-07-03T13:39:25.150+0000] {logging_mixin.py:151} WARNING - data: (354, b'Enter message, ending with "." on a line by itself')
+[2024-07-03T13:39:25.150+0000] {logging_mixin.py:151} WARNING - send: b'Content-Type: multipart/mixed; boundary="===============4195446558592384546=="\r\nMIME-Version: 1.0\r\nSubject: =?utf-8?b?b21vckBuYnQudGo6INGE0LDQudC7ICLQodCw0LvQsNC80LDQu9C10LrRg9C80psueGxzeCIg0LfQsNCz0YDRg9C20LXQvdC90YvQtSDQsiAyMDI0LTA3LTAzIDE4OjM1OjQxKzAwOjAwINCd0JUg0J/QoNCY0J3Qr9Ci?=\r\nFrom: khalimzod@list.ru\r\nTo: <firdavskhushkadamov@gmail.com>\r\n\r\n--===============4195446558592384546==\r\nContent-Type: text/plain; charset="utf-8"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n\r\n0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1LCAKINCaINGB0L7QttCw0LvQtdC90LjRjiDRhNCw0LnQ\r\nuyDRgSDQuNC80LXQvdC10Lwg0KHQsNC70LDQvNCw0LvQtdC60YPQvNKbLnhsc3gsINC30LDQs9GA\r\n0YPQttC10L3QvdGL0Lkg0LIgMjAyNC0wNy0wMyAxODozNTo0MSswMDowMCDQvdC1INCx0YvQuyDQ\r\nv9GA0LjQvdGP0YIg0YHQuNGB0YLQtdC80L7QuSDQsNCy0YLQvtC80LDRgtC40YfQtdGB0LrQvtC5\r\nINC+0LHRgNCw0LHQvtGC0LrQuC4g0J/QvtC20LDQu9GD0LnRgdGC0LAsINC/0YDQvtCy0LXRgNGM\r\n0YLQtSDQt9Cw0L/QvtC70L3QtdC90LjQtSDRhNCw0LnQu9CwLiAKINCU0L7Qv9C+0LvQvdC40YLQ\r\ntdC70YzQvdGL0LUg0YHQstC10LTQtdC90YzRjyDQv9C+INC+0LHQvdCw0YDRg9C20LXQvdC90YvQ\r\nvCDQvtGI0LjQsdC60LDQvCDQv9GA0LjQu9C+0LbQtdC90L3RiyDQuiDQv9C40YHRjNC80YMuCiBD\r\nINGD0LLQsNC20LXQvdC40LXQvCwgCiDQlNC10L/QsNGA0YLQsNC80LXQvdGCINGB0YLQsNGC0LjR\r\ngdGC0LjQutC4INC4INC/0LvQsNGC0LXQttC90L7Qs9C+INCx0LDQu9Cw0L3RgdCwIA==\r\n\r\n--===============4195446558592384546==--\r\n.\r\n'
+[2024-07-03T13:39:25.746+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK id=1sP0Cj-00000000XXx-0UUG\r\n'
+[2024-07-03T13:39:25.747+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK id=1sP0Cj-00000000XXx-0UUG'
+[2024-07-03T13:39:25.747+0000] {logging_mixin.py:151} WARNING - data: (250, b'OK id=1sP0Cj-00000000XXx-0UUG')
+[2024-07-03T13:39:25.747+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:39:25.747277_User@StatDep: email successfuly sent
+[2024-07-03T13:39:25.747+0000] {logging_mixin.py:151} WARNING - send: 'QUIT\r\n'
+[2024-07-03T13:39:26.010+0000] {logging_mixin.py:151} WARNING - reply: b'221 exim-smtp-84f7fbf7d8-mzqnc closing connection\r\n'
+[2024-07-03T13:39:26.010+0000] {logging_mixin.py:151} WARNING - reply: retcode (221); Msg: b'exim-smtp-84f7fbf7d8-mzqnc closing connection'
+[2024-07-03T13:39:26.011+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:39:26.011270_User@StatDep: email object ready to be sent:
+[2024-07-03T13:39:26.403+0000] {logging_mixin.py:151} WARNING - send: 'ehlo [172.20.0.6]\r\n'
+[2024-07-03T13:39:26.470+0000] {logging_mixin.py:151} WARNING - reply: b'250-smtp54.i.mail.ru\r\n'
+[2024-07-03T13:39:26.471+0000] {logging_mixin.py:151} WARNING - reply: b'250-SIZE 73400320\r\n'
+[2024-07-03T13:39:26.471+0000] {logging_mixin.py:151} WARNING - reply: b'250-8BITMIME\r\n'
+[2024-07-03T13:39:26.471+0000] {logging_mixin.py:151} WARNING - reply: b'250-PIPELINING\r\n'
+[2024-07-03T13:39:26.471+0000] {logging_mixin.py:151} WARNING - reply: b'250-DSN\r\n'
+[2024-07-03T13:39:26.472+0000] {logging_mixin.py:151} WARNING - reply: b'250-SMTPUTF8\r\n'
+[2024-07-03T13:39:26.472+0000] {logging_mixin.py:151} WARNING - reply: b'250 AUTH PLAIN LOGIN XOAUTH2\r\n'
+[2024-07-03T13:39:26.473+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'smtp54.i.mail.ru\nSIZE 73400320\n8BITMIME\nPIPELINING\nDSN\nSMTPUTF8\nAUTH PLAIN LOGIN XOAUTH2'
+[2024-07-03T13:39:26.473+0000] {logging_mixin.py:151} WARNING - send: 'AUTH PLAIN AGtoYWxpbXpvZEBsaXN0LnJ1AEdSWFFSakMyYms0cVpIQjI2VXFk\r\n'
+[2024-07-03T13:39:26.691+0000] {logging_mixin.py:151} WARNING - reply: b'235 Authentication succeeded\r\n'
+[2024-07-03T13:39:26.692+0000] {logging_mixin.py:151} WARNING - reply: retcode (235); Msg: b'Authentication succeeded'
+[2024-07-03T13:39:26.695+0000] {logging_mixin.py:151} WARNING - send: 'mail FROM:<khalimzod@list.ru> size=1309\r\n'
+[2024-07-03T13:39:26.762+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK\r\n'
+[2024-07-03T13:39:26.763+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK'
+[2024-07-03T13:39:26.764+0000] {logging_mixin.py:151} WARNING - send: 'rcpt TO:<firdavskhushkadamov@gmail.com>\r\n'
+[2024-07-03T13:39:26.844+0000] {logging_mixin.py:151} WARNING - reply: b'250 Accepted\r\n'
+[2024-07-03T13:39:26.845+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'Accepted'
+[2024-07-03T13:39:26.845+0000] {logging_mixin.py:151} WARNING - send: 'data\r\n'
+[2024-07-03T13:39:26.911+0000] {logging_mixin.py:151} WARNING - reply: b'354 Enter message, ending with "." on a line by itself\r\n'
+[2024-07-03T13:39:26.912+0000] {logging_mixin.py:151} WARNING - reply: retcode (354); Msg: b'Enter message, ending with "." on a line by itself'
+[2024-07-03T13:39:26.912+0000] {logging_mixin.py:151} WARNING - data: (354, b'Enter message, ending with "." on a line by itself')
+[2024-07-03T13:39:26.913+0000] {logging_mixin.py:151} WARNING - send: b'Content-Type: multipart/mixed; boundary="===============6799348328943175801=="\r\nMIME-Version: 1.0\r\nSubject: =?utf-8?b?b21vckBuYnQudGo6INGE0LDQudC7ICJISy52MC41NzA3LjMxMTIyMDI0IC0gQ29weS54bHN4IiDQt9Cw0LPRgNGD0LbQtdC90L3Ri9C1INCyIDIwMjQtMDctMDMgMTg6MzU6NDErMDA6MDAg0J3QlSDQn9Cg0JjQndCv0KI=?=\r\nFrom: khalimzod@list.ru\r\nTo: <firdavskhushkadamov@gmail.com>\r\n\r\n--===============6799348328943175801==\r\nContent-Type: text/plain; charset="utf-8"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n\r\n0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1LCAKINCaINGB0L7QttCw0LvQtdC90LjRjiDRhNCw0LnQ\r\nuyDRgSDQuNC80LXQvdC10LwgSEsudjAuNTcwNy4zMTEyMjAyNCAtIENvcHkueGxzeCwg0LfQsNCz\r\n0YDRg9C20LXQvdC90YvQuSDQsiAyMDI0LTA3LTAzIDE4OjM1OjQxKzAwOjAwINC90LUg0LHRi9C7\r\nINC/0YDQuNC90Y/RgiDRgdC40YHRgtC10LzQvtC5INCw0LLRgtC+0LzQsNGC0LjRh9C10YHQutC+\r\n0Lkg0L7QsdGA0LDQsdC+0YLQutC4LiDQn9C+0LbQsNC70YPQudGB0YLQsCwg0L/RgNC+0LLQtdGA\r\n0YzRgtC1INC30LDQv9C+0LvQvdC10L3QuNC1INGE0LDQudC70LAuIAog0JTQvtC/0L7Qu9C90LjR\r\ngtC10LvRjNC90YvQtSDRgdCy0LXQtNC10L3RjNGPINC/0L4g0L7QsdC90LDRgNGD0LbQtdC90L3R\r\ni9C8INC+0YjQuNCx0LrQsNC8INC/0YDQuNC70L7QttC10L3QvdGLINC6INC/0LjRgdGM0LzRgy4K\r\nIEMg0YPQstCw0LbQtdC90LjQtdC8LCAKINCU0LXQv9Cw0YDRgtCw0LzQtdC90YIg0YHRgtCw0YLQ\r\nuNGB0YLQuNC60Lgg0Lgg0L/Qu9Cw0YLQtdC20L3QvtCz0L4g0LHQsNC70LDQvdGB0LAg\r\n\r\n--===============6799348328943175801==--\r\n.\r\n'
+[2024-07-03T13:39:27.697+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK id=1sP0Ck-00000009vuS-3gsV\r\n'
+[2024-07-03T13:39:27.698+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK id=1sP0Ck-00000009vuS-3gsV'
+[2024-07-03T13:39:27.698+0000] {logging_mixin.py:151} WARNING - data: (250, b'OK id=1sP0Ck-00000009vuS-3gsV')
+[2024-07-03T13:39:27.698+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:39:27.698410_User@StatDep: email successfuly sent
+[2024-07-03T13:39:27.698+0000] {logging_mixin.py:151} WARNING - send: 'QUIT\r\n'
+[2024-07-03T13:39:27.966+0000] {logging_mixin.py:151} WARNING - reply: b'221 smtp54.i.mail.ru closing connection\r\n'
+[2024-07-03T13:39:27.966+0000] {logging_mixin.py:151} WARNING - reply: retcode (221); Msg: b'smtp54.i.mail.ru closing connection'
+[2024-07-03T13:39:27.968+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:39:27.968097_User@StatDep: email object ready to be sent:
+[2024-07-03T13:39:28.329+0000] {logging_mixin.py:151} WARNING - send: 'ehlo [172.20.0.6]\r\n'
+[2024-07-03T13:39:28.388+0000] {logging_mixin.py:151} WARNING - reply: b'250-smtp45.i.mail.ru\r\n'
+[2024-07-03T13:39:28.389+0000] {logging_mixin.py:151} WARNING - reply: b'250-SIZE 73400320\r\n'
+[2024-07-03T13:39:28.389+0000] {logging_mixin.py:151} WARNING - reply: b'250-8BITMIME\r\n'
+[2024-07-03T13:39:28.389+0000] {logging_mixin.py:151} WARNING - reply: b'250-PIPELINING\r\n'
+[2024-07-03T13:39:28.389+0000] {logging_mixin.py:151} WARNING - reply: b'250-DSN\r\n'
+[2024-07-03T13:39:28.390+0000] {logging_mixin.py:151} WARNING - reply: b'250-SMTPUTF8\r\n'
+[2024-07-03T13:39:28.390+0000] {logging_mixin.py:151} WARNING - reply: b'250 AUTH PLAIN LOGIN XOAUTH2\r\n'
+[2024-07-03T13:39:28.390+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'smtp45.i.mail.ru\nSIZE 73400320\n8BITMIME\nPIPELINING\nDSN\nSMTPUTF8\nAUTH PLAIN LOGIN XOAUTH2'
+[2024-07-03T13:39:28.390+0000] {logging_mixin.py:151} WARNING - send: 'AUTH PLAIN AGtoYWxpbXpvZEBsaXN0LnJ1AEdSWFFSakMyYms0cVpIQjI2VXFk\r\n'
+[2024-07-03T13:39:28.609+0000] {logging_mixin.py:151} WARNING - reply: b'235 Authentication succeeded\r\n'
+[2024-07-03T13:39:28.609+0000] {logging_mixin.py:151} WARNING - reply: retcode (235); Msg: b'Authentication succeeded'
+[2024-07-03T13:39:28.612+0000] {logging_mixin.py:151} WARNING - send: 'mail FROM:<khalimzod@list.ru> size=1305\r\n'
+[2024-07-03T13:39:28.673+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK\r\n'
+[2024-07-03T13:39:28.673+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK'
+[2024-07-03T13:39:28.674+0000] {logging_mixin.py:151} WARNING - send: 'rcpt TO:<firdavskhushkadamov@gmail.com>\r\n'
+[2024-07-03T13:39:28.744+0000] {logging_mixin.py:151} WARNING - reply: b'250 Accepted\r\n'
+[2024-07-03T13:39:28.744+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'Accepted'
+[2024-07-03T13:39:28.744+0000] {logging_mixin.py:151} WARNING - send: 'data\r\n'
+[2024-07-03T13:39:28.804+0000] {logging_mixin.py:151} WARNING - reply: b'354 Enter message, ending with "." on a line by itself\r\n'
+[2024-07-03T13:39:28.805+0000] {logging_mixin.py:151} WARNING - reply: retcode (354); Msg: b'Enter message, ending with "." on a line by itself'
+[2024-07-03T13:39:28.805+0000] {logging_mixin.py:151} WARNING - data: (354, b'Enter message, ending with "." on a line by itself')
+[2024-07-03T13:39:28.806+0000] {logging_mixin.py:151} WARNING - send: b'Content-Type: multipart/mixed; boundary="===============8028210790107017959=="\r\nMIME-Version: 1.0\r\nSubject: =?utf-8?b?b21vckBuYnQudGo6INGE0LDQudC7ICLQodCw0LvQsNC80LDQu9C10LrRg9C80psueGxzeCIg0LfQsNCz0YDRg9C20LXQvdC90YvQtSDQsiAyMDI0LTA3LTAzIDE4OjM1OjQxKzAwOjAwINCd0JUg0J/QoNCY0J3Qr9Ci?=\r\nFrom: khalimzod@list.ru\r\nTo: <firdavskhushkadamov@gmail.com>\r\n\r\n--===============8028210790107017959==\r\nContent-Type: text/plain; charset="utf-8"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n\r\n0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1LCAKINCaINGB0L7QttCw0LvQtdC90LjRjiDRhNCw0LnQ\r\nuyDRgSDQuNC80LXQvdC10Lwg0KHQsNC70LDQvNCw0LvQtdC60YPQvNKbLnhsc3gsINC30LDQs9GA\r\n0YPQttC10L3QvdGL0Lkg0LIgMjAyNC0wNy0wMyAxODozNTo0MSswMDowMCDQvdC1INCx0YvQuyDQ\r\nv9GA0LjQvdGP0YIg0YHQuNGB0YLQtdC80L7QuSDQsNCy0YLQvtC80LDRgtC40YfQtdGB0LrQvtC5\r\nINC+0LHRgNCw0LHQvtGC0LrQuC4g0J/QvtC20LDQu9GD0LnRgdGC0LAsINC/0YDQvtCy0LXRgNGM\r\n0YLQtSDQt9Cw0L/QvtC70L3QtdC90LjQtSDRhNCw0LnQu9CwLiAKINCU0L7Qv9C+0LvQvdC40YLQ\r\ntdC70YzQvdGL0LUg0YHQstC10LTQtdC90YzRjyDQv9C+INC+0LHQvdCw0YDRg9C20LXQvdC90YvQ\r\nvCDQvtGI0LjQsdC60LDQvCDQv9GA0LjQu9C+0LbQtdC90L3RiyDQuiDQv9C40YHRjNC80YMuCiBD\r\nINGD0LLQsNC20LXQvdC40LXQvCwgCiDQlNC10L/QsNGA0YLQsNC80LXQvdGCINGB0YLQsNGC0LjR\r\ngdGC0LjQutC4INC4INC/0LvQsNGC0LXQttC90L7Qs9C+INCx0LDQu9Cw0L3RgdCwIA==\r\n\r\n--===============8028210790107017959==--\r\n.\r\n'
+[2024-07-03T13:39:29.358+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK id=1sP0Cm-0000000DbdO-3FQY\r\n'
+[2024-07-03T13:39:29.359+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK id=1sP0Cm-0000000DbdO-3FQY'
+[2024-07-03T13:39:29.359+0000] {logging_mixin.py:151} WARNING - data: (250, b'OK id=1sP0Cm-0000000DbdO-3FQY')
+[2024-07-03T13:39:29.360+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:39:29.360096_User@StatDep: email successfuly sent
+[2024-07-03T13:39:29.360+0000] {logging_mixin.py:151} WARNING - send: 'QUIT\r\n'
+[2024-07-03T13:39:29.621+0000] {logging_mixin.py:151} WARNING - reply: b'221 smtp45.i.mail.ru closing connection\r\n'
+[2024-07-03T13:39:29.621+0000] {logging_mixin.py:151} WARNING - reply: retcode (221); Msg: b'smtp45.i.mail.ru closing connection'
+[2024-07-03T13:39:29.623+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:39:29.623194_User@StatDep: email object ready to be sent:
+[2024-07-03T13:39:30.015+0000] {logging_mixin.py:151} WARNING - send: 'ehlo [172.20.0.6]\r\n'
+[2024-07-03T13:39:30.083+0000] {logging_mixin.py:151} WARNING - reply: b'250-smtp38.i.mail.ru\r\n'
+[2024-07-03T13:39:30.083+0000] {logging_mixin.py:151} WARNING - reply: b'250-SIZE 73400320\r\n'
+[2024-07-03T13:39:30.084+0000] {logging_mixin.py:151} WARNING - reply: b'250-8BITMIME\r\n'
+[2024-07-03T13:39:30.084+0000] {logging_mixin.py:151} WARNING - reply: b'250-PIPELINING\r\n'
+[2024-07-03T13:39:30.084+0000] {logging_mixin.py:151} WARNING - reply: b'250-DSN\r\n'
+[2024-07-03T13:39:30.084+0000] {logging_mixin.py:151} WARNING - reply: b'250-SMTPUTF8\r\n'
+[2024-07-03T13:39:30.085+0000] {logging_mixin.py:151} WARNING - reply: b'250 AUTH PLAIN LOGIN XOAUTH2\r\n'
+[2024-07-03T13:39:30.085+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'smtp38.i.mail.ru\nSIZE 73400320\n8BITMIME\nPIPELINING\nDSN\nSMTPUTF8\nAUTH PLAIN LOGIN XOAUTH2'
+[2024-07-03T13:39:30.085+0000] {logging_mixin.py:151} WARNING - send: 'AUTH PLAIN AGtoYWxpbXpvZEBsaXN0LnJ1AEdSWFFSakMyYms0cVpIQjI2VXFk\r\n'
+[2024-07-03T13:39:30.251+0000] {logging_mixin.py:151} WARNING - reply: b'235 Authentication succeeded\r\n'
+[2024-07-03T13:39:30.251+0000] {logging_mixin.py:151} WARNING - reply: retcode (235); Msg: b'Authentication succeeded'
+[2024-07-03T13:39:30.254+0000] {logging_mixin.py:151} WARNING - send: 'mail FROM:<khalimzod@list.ru> size=1309\r\n'
+[2024-07-03T13:39:30.323+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK\r\n'
+[2024-07-03T13:39:30.323+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK'
+[2024-07-03T13:39:30.324+0000] {logging_mixin.py:151} WARNING - send: 'rcpt TO:<firdavskhushkadamov@gmail.com>\r\n'
+[2024-07-03T13:39:30.417+0000] {logging_mixin.py:151} WARNING - reply: b'250 Accepted\r\n'
+[2024-07-03T13:39:30.417+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'Accepted'
+[2024-07-03T13:39:30.417+0000] {logging_mixin.py:151} WARNING - send: 'data\r\n'
+[2024-07-03T13:39:30.487+0000] {logging_mixin.py:151} WARNING - reply: b'354 Enter message, ending with "." on a line by itself\r\n'
+[2024-07-03T13:39:30.488+0000] {logging_mixin.py:151} WARNING - reply: retcode (354); Msg: b'Enter message, ending with "." on a line by itself'
+[2024-07-03T13:39:30.488+0000] {logging_mixin.py:151} WARNING - data: (354, b'Enter message, ending with "." on a line by itself')
+[2024-07-03T13:39:30.488+0000] {logging_mixin.py:151} WARNING - send: b'Content-Type: multipart/mixed; boundary="===============7354686639223192641=="\r\nMIME-Version: 1.0\r\nSubject: =?utf-8?b?b21vckBuYnQudGo6INGE0LDQudC7ICJISy52MC41NzA3LjMxMTIyMDI0IC0gQ29weS54bHN4IiDQt9Cw0LPRgNGD0LbQtdC90L3Ri9C1INCyIDIwMjQtMDctMDMgMTg6MzU6NDErMDA6MDAg0J3QlSDQn9Cg0JjQndCv0KI=?=\r\nFrom: khalimzod@list.ru\r\nTo: <firdavskhushkadamov@gmail.com>\r\n\r\n--===============7354686639223192641==\r\nContent-Type: text/plain; charset="utf-8"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n\r\n0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1LCAKINCaINGB0L7QttCw0LvQtdC90LjRjiDRhNCw0LnQ\r\nuyDRgSDQuNC80LXQvdC10LwgSEsudjAuNTcwNy4zMTEyMjAyNCAtIENvcHkueGxzeCwg0LfQsNCz\r\n0YDRg9C20LXQvdC90YvQuSDQsiAyMDI0LTA3LTAzIDE4OjM1OjQxKzAwOjAwINC90LUg0LHRi9C7\r\nINC/0YDQuNC90Y/RgiDRgdC40YHRgtC10LzQvtC5INCw0LLRgtC+0LzQsNGC0LjRh9C10YHQutC+\r\n0Lkg0L7QsdGA0LDQsdC+0YLQutC4LiDQn9C+0LbQsNC70YPQudGB0YLQsCwg0L/RgNC+0LLQtdGA\r\n0YzRgtC1INC30LDQv9C+0LvQvdC10L3QuNC1INGE0LDQudC70LAuIAog0JTQvtC/0L7Qu9C90LjR\r\ngtC10LvRjNC90YvQtSDRgdCy0LXQtNC10L3RjNGPINC/0L4g0L7QsdC90LDRgNGD0LbQtdC90L3R\r\ni9C8INC+0YjQuNCx0LrQsNC8INC/0YDQuNC70L7QttC10L3QvdGLINC6INC/0LjRgdGM0LzRgy4K\r\nIEMg0YPQstCw0LbQtdC90LjQtdC8LCAKINCU0LXQv9Cw0YDRgtCw0LzQtdC90YIg0YHRgtCw0YLQ\r\nuNGB0YLQuNC60Lgg0Lgg0L/Qu9Cw0YLQtdC20L3QvtCz0L4g0LHQsNC70LDQvdGB0LAg\r\n\r\n--===============7354686639223192641==--\r\n.\r\n'
+[2024-07-03T13:39:31.153+0000] {logging_mixin.py:151} WARNING - reply: b'250 OK id=1sP0Co-00000000JuM-1uRc\r\n'
+[2024-07-03T13:39:31.154+0000] {logging_mixin.py:151} WARNING - reply: retcode (250); Msg: b'OK id=1sP0Co-00000000JuM-1uRc'
+[2024-07-03T13:39:31.154+0000] {logging_mixin.py:151} WARNING - data: (250, b'OK id=1sP0Co-00000000JuM-1uRc')
+[2024-07-03T13:39:31.154+0000] {logging_mixin.py:151} INFO - #>2024-07-03 13:39:31.154381_User@StatDep: email successfuly sent
+[2024-07-03T13:39:31.154+0000] {logging_mixin.py:151} WARNING - send: 'QUIT\r\n'
+[2024-07-03T13:39:31.425+0000] {logging_mixin.py:151} WARNING - reply: b'221 exim-smtp-84f7fbf7d8-7nllq closing connection\r\n'
+[2024-07-03T13:39:31.425+0000] {logging_mixin.py:151} WARNING - reply: retcode (221); Msg: b'exim-smtp-84f7fbf7d8-7nllq closing connection'
+[2024-07-03T13:39:31.425+0000] {logging_mixin.py:151} INFO -    finilizing processing for the reserved file uploads...
+[2024-07-03T13:39:31.429+0000] {python.py:194} INFO - Done. Returned value was: True
+[2024-07-03T13:39:31.456+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=id_task_send_emails, execution_date=20240702T224000, start_date=20240703T133851, end_date=20240703T133931
+[2024-07-03T13:39:31.501+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-03T13:39:31.527+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

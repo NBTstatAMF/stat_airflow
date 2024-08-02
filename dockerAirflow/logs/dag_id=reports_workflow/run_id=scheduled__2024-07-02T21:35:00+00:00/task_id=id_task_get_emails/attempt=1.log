@@ -1,0 +1,40 @@
+[2024-07-03T09:58:41.400+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T21:35:00+00:00 [queued]>
+[2024-07-03T09:58:41.415+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T21:35:00+00:00 [queued]>
+[2024-07-03T09:58:41.415+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-03T09:58:41.447+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_get_emails> on 2024-07-02 21:35:00+00:00
+[2024-07-03T09:58:41.455+0000] {standard_task_runner.py:57} INFO - Started process 20870 to run task
+[2024-07-03T09:58:41.467+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_get_emails', 'scheduled__2024-07-02T21:35:00+00:00', '--job-id', '506', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmp5p9t4eof']
+[2024-07-03T09:58:41.469+0000] {standard_task_runner.py:85} INFO - Job 506: Subtask id_task_get_emails
+[2024-07-03T09:58:41.557+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T21:35:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-03T09:58:41.651+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_get_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-02T21:35:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-02T21:35:00+00:00'
+[2024-07-03T09:58:41.652+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-03T09:58:41.653+0000] {logging_mixin.py:151} INFO - #>2024-07-03 09:58:41.652975_User@StatDep: EmailRobot in screated.
+[2024-07-03T09:58:41.653+0000] {logging_mixin.py:151} INFO - #>2024-07-03 09:58:41.653183_User@StatDep: get_for_recent_emails is started...
+[2024-07-03T09:58:41.653+0000] {logging_mixin.py:151} INFO - #>2024-07-03 09:58:41.653320_User@StatDep: pop3_fetch_emails isstarted...
+[2024-07-03T09:58:42.043+0000] {logging_mixin.py:151} INFO -    b'+OK'
+[2024-07-03T09:58:42.390+0000] {logging_mixin.py:151} INFO -    mailbox have 0 emails and the robot can process 10
+[2024-07-03T09:58:42.390+0000] {logging_mixin.py:151} INFO - #>2024-07-03 09:58:42.390667_User@StatDep: no emails to process, exiting pop3_fetch_emails()...
+[2024-07-03T09:58:42.391+0000] {python.py:194} INFO - Done. Returned value was: True
+[2024-07-03T09:58:42.427+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=id_task_get_emails, execution_date=20240702T213500, start_date=20240703T095841, end_date=20240703T095842
+[2024-07-03T09:58:42.450+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-03T09:58:42.476+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-07-03T12:30:19.973+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T21:35:00+00:00 [queued]>
+[2024-07-03T12:30:19.981+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T21:35:00+00:00 [queued]>
+[2024-07-03T12:30:19.981+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-03T12:30:19.993+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_get_emails> on 2024-07-02 21:35:00+00:00
+[2024-07-03T12:30:19.997+0000] {standard_task_runner.py:57} INFO - Started process 24961 to run task
+[2024-07-03T12:30:20.008+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_get_emails', 'scheduled__2024-07-02T21:35:00+00:00', '--job-id', '1403', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmpef3lqbqw']
+[2024-07-03T12:30:20.010+0000] {standard_task_runner.py:85} INFO - Job 1403: Subtask id_task_get_emails
+[2024-07-03T12:30:20.065+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-02T21:35:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-03T12:30:20.150+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_get_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-02T21:35:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-02T21:35:00+00:00'
+[2024-07-03T12:30:20.151+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-03T12:30:20.151+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:30:20.151633_User@StatDep: EmailRobot in screated.
+[2024-07-03T12:30:20.151+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:30:20.151821_User@StatDep: get_for_recent_emails is started...
+[2024-07-03T12:30:20.151+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:30:20.151959_User@StatDep: pop3_fetch_emails isstarted...
+[2024-07-03T12:30:20.559+0000] {logging_mixin.py:151} INFO -    b'+OK'
+[2024-07-03T12:30:20.950+0000] {logging_mixin.py:151} INFO -    mailbox have 0 emails and the robot can process 10
+[2024-07-03T12:30:20.951+0000] {logging_mixin.py:151} INFO - #>2024-07-03 12:30:20.951389_User@StatDep: no emails to process, exiting pop3_fetch_emails()...
+[2024-07-03T12:30:20.952+0000] {python.py:194} INFO - Done. Returned value was: True
+[2024-07-03T12:30:20.987+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=id_task_get_emails, execution_date=20240702T213500, start_date=20240703T123019, end_date=20240703T123020
+[2024-07-03T12:30:21.015+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-03T12:30:21.074+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

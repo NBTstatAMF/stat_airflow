@@ -1,0 +1,57 @@
+[2024-07-04T12:21:14.906+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-04T12:15:00+00:00 [queued]>
+[2024-07-04T12:21:14.914+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-04T12:15:00+00:00 [queued]>
+[2024-07-04T12:21:14.914+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-04T12:21:14.925+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_send_emails> on 2024-07-04 12:15:00+00:00
+[2024-07-04T12:21:14.931+0000] {standard_task_runner.py:57} INFO - Started process 49373 to run task
+[2024-07-04T12:21:14.941+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_send_emails', 'scheduled__2024-07-04T12:15:00+00:00', '--job-id', '2686', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmplg1ip8r_']
+[2024-07-04T12:21:14.947+0000] {standard_task_runner.py:85} INFO - Job 2686: Subtask id_task_send_emails
+[2024-07-04T12:21:15.012+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-04T12:15:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-04T12:21:15.114+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_send_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-04T12:15:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-04T12:15:00+00:00'
+[2024-07-04T12:21:15.116+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-04T12:21:15.116+0000] {logging_mixin.py:151} INFO - #>2024-07-04 12:21:15.116648_User@StatDep: EmailRobot in screated.
+[2024-07-04T12:21:15.116+0000] {logging_mixin.py:151} INFO - #>2024-07-04 12:21:15.116852_User@StatDep: send_validation_results is started...
+[2024-07-04T12:21:15.127+0000] {logging_mixin.py:151} INFO -    #>2024-07-04 12:21:15.127790_conneciton to db is set.
+[2024-07-04T12:21:15.130+0000] {logging_mixin.py:151} INFO -    #>2024-07-04 12:21:15.130458_cursor execution is successful.
+[2024-07-04T12:21:15.130+0000] {logging_mixin.py:151} INFO -    There is no any new submissions found. The get_validation_results is over.
+[2024-07-04T12:21:15.130+0000] {python.py:194} INFO - Done. Returned value was: True
+[2024-07-04T12:21:15.156+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=id_task_send_emails, execution_date=20240704T121500, start_date=20240704T122114, end_date=20240704T122115
+[2024-07-04T12:21:15.186+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-04T12:21:15.211+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-07-04T12:24:28.837+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-04T12:15:00+00:00 [queued]>
+[2024-07-04T12:24:28.848+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-04T12:15:00+00:00 [queued]>
+[2024-07-04T12:24:28.848+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-04T12:24:28.862+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_send_emails> on 2024-07-04 12:15:00+00:00
+[2024-07-04T12:24:28.871+0000] {standard_task_runner.py:57} INFO - Started process 49520 to run task
+[2024-07-04T12:24:28.875+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_send_emails', 'scheduled__2024-07-04T12:15:00+00:00', '--job-id', '2719', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmp156lt2jv']
+[2024-07-04T12:24:28.887+0000] {standard_task_runner.py:85} INFO - Job 2719: Subtask id_task_send_emails
+[2024-07-04T12:24:29.034+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-04T12:15:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-04T12:24:29.143+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_send_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-04T12:15:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-04T12:15:00+00:00'
+[2024-07-04T12:24:29.145+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-04T12:24:29.145+0000] {logging_mixin.py:151} INFO - #>2024-07-04 12:24:29.145659_User@StatDep: EmailRobot in screated.
+[2024-07-04T12:24:29.145+0000] {logging_mixin.py:151} INFO - #>2024-07-04 12:24:29.145861_User@StatDep: send_validation_results is started...
+[2024-07-04T12:24:29.155+0000] {logging_mixin.py:151} INFO -    #>2024-07-04 12:24:29.155808_conneciton to db is set.
+[2024-07-04T12:24:29.157+0000] {logging_mixin.py:151} INFO -    #>2024-07-04 12:24:29.157531_cursor execution is successful.
+[2024-07-04T12:24:29.157+0000] {logging_mixin.py:151} INFO -    There is no any new submissions found. The get_validation_results is over.
+[2024-07-04T12:24:29.158+0000] {python.py:194} INFO - Done. Returned value was: True
+[2024-07-04T12:24:29.181+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=id_task_send_emails, execution_date=20240704T121500, start_date=20240704T122428, end_date=20240704T122429
+[2024-07-04T12:24:29.228+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-04T12:24:29.262+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-07-04T12:26:15.533+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-04T12:15:00+00:00 [queued]>
+[2024-07-04T12:26:15.559+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-04T12:15:00+00:00 [queued]>
+[2024-07-04T12:26:15.559+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-04T12:26:15.574+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_send_emails> on 2024-07-04 12:15:00+00:00
+[2024-07-04T12:26:15.579+0000] {standard_task_runner.py:57} INFO - Started process 49653 to run task
+[2024-07-04T12:26:15.584+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_send_emails', 'scheduled__2024-07-04T12:15:00+00:00', '--job-id', '2755', '--raw', '--subdir', 'DAGS_FOLDER/dag_email_robot.py', '--cfg-path', '/tmp/tmp3v2d1egm']
+[2024-07-04T12:26:15.587+0000] {standard_task_runner.py:85} INFO - Job 2755: Subtask id_task_send_emails
+[2024-07-04T12:26:15.637+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_send_emails scheduled__2024-07-04T12:15:00+00:00 [running]> on host 6f4ef5488251
+[2024-07-04T12:26:15.715+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_send_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-04T12:15:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-04T12:15:00+00:00'
+[2024-07-04T12:26:15.716+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-04T12:26:15.717+0000] {logging_mixin.py:151} INFO - #>2024-07-04 12:26:15.717002_User@StatDep: EmailRobot in screated.
+[2024-07-04T12:26:15.717+0000] {logging_mixin.py:151} INFO - #>2024-07-04 12:26:15.717185_User@StatDep: send_validation_results is started...
+[2024-07-04T12:26:15.725+0000] {logging_mixin.py:151} INFO -    #>2024-07-04 12:26:15.725527_conneciton to db is set.
+[2024-07-04T12:26:15.727+0000] {logging_mixin.py:151} INFO -    #>2024-07-04 12:26:15.727402_cursor execution is successful.
+[2024-07-04T12:26:15.727+0000] {logging_mixin.py:151} INFO -    There is no any new submissions found. The get_validation_results is over.
+[2024-07-04T12:26:15.727+0000] {python.py:194} INFO - Done. Returned value was: True
+[2024-07-04T12:26:15.753+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=reports_workflow, task_id=id_task_send_emails, execution_date=20240704T121500, start_date=20240704T122615, end_date=20240704T122615
+[2024-07-04T12:26:15.796+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-04T12:26:15.822+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

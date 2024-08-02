@@ -1,0 +1,42 @@
+[2024-07-29T15:10:01.961+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-29T15:05:00+00:00 [queued]>
+[2024-07-29T15:10:01.971+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-29T15:05:00+00:00 [queued]>
+[2024-07-29T15:10:01.972+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-07-29T15:10:01.991+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): id_task_get_emails> on 2024-07-29 15:05:00+00:00
+[2024-07-29T15:10:01.997+0000] {standard_task_runner.py:57} INFO - Started process 11011 to run task
+[2024-07-29T15:10:02.003+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'reports_workflow', 'id_task_get_emails', 'scheduled__2024-07-29T15:05:00+00:00', '--job-id', '395', '--raw', '--subdir', 'DAGS_FOLDER/dag_stat_report.py', '--cfg-path', '/tmp/tmpsom794km']
+[2024-07-29T15:10:02.007+0000] {standard_task_runner.py:85} INFO - Job 395: Subtask id_task_get_emails
+[2024-07-29T15:10:02.083+0000] {task_command.py:415} INFO - Running <TaskInstance: reports_workflow.id_task_get_emails scheduled__2024-07-29T15:05:00+00:00 [running]> on host 3fb5581aee62
+[2024-07-29T15:10:02.198+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='FIRDAVS' AIRFLOW_CTX_DAG_ID='reports_workflow' AIRFLOW_CTX_TASK_ID='id_task_get_emails' AIRFLOW_CTX_EXECUTION_DATE='2024-07-29T15:05:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-29T15:05:00+00:00'
+[2024-07-29T15:10:02.199+0000] {logging_mixin.py:151} INFO - path of config file:  /opt/***
+[2024-07-29T15:10:02.200+0000] {logging_mixin.py:151} INFO - #>2024-07-29 15:10:02.200503_User@StatDep: EmailRobot in screated.
+[2024-07-29T15:10:02.200+0000] {logging_mixin.py:151} INFO - #>2024-07-29 15:10:02.200677_User@StatDep: get_for_recent_emails is started...
+[2024-07-29T15:10:02.200+0000] {logging_mixin.py:151} INFO - #>2024-07-29 15:10:02.200812_User@StatDep: pop3_fetch_emails isstarted...
+[2024-07-29T15:10:10.205+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_stat_report.py", line 34, in get_emails
+    robot.fetch_emails()
+  File "/opt/airflow/dags/library/emailRobot.py", line 62, in fetch_emails
+    return self.pop3_fetch_emails()
+  File "/opt/airflow/dags/library/emailRobot.py", line 77, in pop3_fetch_emails
+    mail = poplib.POP3_SSL(self.host)
+  File "/usr/local/lib/python3.8/poplib.py", line 450, in __init__
+    POP3.__init__(self, host, port, timeout)
+  File "/usr/local/lib/python3.8/poplib.py", line 104, in __init__
+    self.sock = self._create_socket(timeout)
+  File "/usr/local/lib/python3.8/poplib.py", line 453, in _create_socket
+    sock = POP3._create_socket(self, timeout)
+  File "/usr/local/lib/python3.8/poplib.py", line 110, in _create_socket
+    return socket.create_connection((self.host, self.port), timeout)
+  File "/usr/local/lib/python3.8/socket.py", line 787, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/local/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+[2024-07-29T15:10:10.225+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=reports_workflow, task_id=id_task_get_emails, execution_date=20240729T150500, start_date=20240729T151001, end_date=20240729T151010
+[2024-07-29T15:10:10.246+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 395 for task id_task_get_emails ([Errno -3] Temporary failure in name resolution; 11011)
+[2024-07-29T15:10:10.273+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-07-29T15:10:10.306+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
