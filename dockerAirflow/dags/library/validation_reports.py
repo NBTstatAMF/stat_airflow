@@ -272,7 +272,8 @@ def get_hello():
             status = 1
             try:
                 arg = check_file_name(mobile_records[3]) 
-                report = selectOne('tbl_report_type','code',arg['name'],'id,report_period_type')
+                report = selectOne('tbl_report_type','code',arg['name'],'id,report_period_type,submition_mode')
+                print(report)
                 bank_id = selectOne('tbl_entities','bic4',arg['bic4'])
                 period_id = selectOne('tbl_period',None,f"type={report[1]} and to_date="+f"'{arg['date']}'")
                 postgres_insert_query = f"select * from sma_stat_dep.tbl_schedule WHERE bank_id={bank_id} AND period_id={period_id} AND report_type_id={report[0]}"
@@ -283,7 +284,7 @@ def get_hello():
                 postgres_insert_query = f"""UPDATE sma_stat_dep.tbl_files SET upload_status='2' WHERE id='{file_id}';"""
                 cursor.execute(postgres_insert_query) 
                 connection.commit()
-
+                print(schedule_records[0])
                 if(datetime.today().date()>to_date+timedelta(days=schedule_records[5])):
                     status = 5
                     logs["context"]=configs['errors']['0201']['ru']    
@@ -418,7 +419,10 @@ def get_hello():
 
                                     if(table['table_type']=="fixed"):
                                         data = pd.read_excel(workbook_xml,engine='openpyxl',index_col=None,header=None,sheet_name=table['sheet_name'], keep_default_na=False)
+                                        table_errors_count = 0
                                         for i in table['nodes']:
+                                            # print(i)
+                                            # print(i['cell_address'])
                                             cell = findeCEll(i['cell_address'])
                                             cnfgMass[f'{cell[0]},{cell[1]}'] = i 
                                             cnfList.add(i['code'])
@@ -505,8 +509,8 @@ def get_hello():
                                                                 obj.update({attr['attr_type']:attr['attr_value']})
                                                             obj.update({'value':excelCell})
                                                             db_query_values.append([ent[configCell['code']],tbl_file_per_schedule_id,json.dumps(obj,ensure_ascii=False)])
-                                                        else:
-                                                                print(configCell['cell_address'],excelCell)
+                                                        # else:
+                                                        #      print(configCell['cell_address'],excelCell)
                                             # print(db_query_values)
 
                                             # single line 
@@ -516,7 +520,11 @@ def get_hello():
                                             # multiple line
                                             execute_values(cursor,
                                             "INSERT INTO sma_stat_dep.tbl_attr_values (ent_id,file_per_schedule_id,a_value) VALUES %s",
-                                            db_query_values)  
+                                            db_query_values)
+                                            if(int(report[2])==1):    
+                                                postgres_insert_query = f"""UPDATE sma_stat_dep.tbl_schedule SET reporting_window='0' WHERE id='{schedule_records[0]}';"""
+                                                cursor.execute(postgres_insert_query) 
+                                                connection.commit()
 
 
 
@@ -642,6 +650,10 @@ def get_hello():
                                             execute_values(cursor,
                                             "INSERT INTO sma_stat_dep.tbl_attr_values (ent_id,file_per_schedule_id,a_value) VALUES %s",
                                             db_query_values)
+                                            if(int(report[2])==1):    
+                                                postgres_insert_query = f"""UPDATE sma_stat_dep.tbl_schedule SET reporting_window='0' WHERE id='{schedule_records[0]}';"""
+                                                cursor.execute(postgres_insert_query) 
+                                                connection.commit()
 
                                         print('end of validation------------',datetime.today().strftime('%Y-%m-%d %H:%M:%S'))
                                         
@@ -756,4 +768,3 @@ def get_hello():
 # def get_plugin():
 #     from airflow_clickhouse_plugin.operators.clickhouse import ClickHouseOperator
 #     print(f"clickhouseOperator!!!!!!! with version: {ClickHouseOperator.__class__}")
-
