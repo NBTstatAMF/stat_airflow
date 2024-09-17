@@ -122,7 +122,7 @@ class email_robot():
                         attachment = bytes(att[1])
                         if not self.is_attachment_name_valid(att[0]): 
                             upload_status = 5
-                            files_status = 4
+                            files_status = 5
                         else:
                             upload_status = 1
                             files_status  = 1
