@@ -6,6 +6,8 @@ from datetime import datetime
 from pathlib import Path
 from math import ceil
 from collections import Counter as cnt
+from io import BytesIO
+import openpyxl
 
 
 
@@ -264,6 +266,33 @@ class Masterdata():
             except(Exception, psycopg2.Error) as error: 
                 print(error)
                 return error
+            
+
+#===============================GET FILE_LOGS===============================#        
+    def get_file_logs (self, file_id:int):
+        report_type_query = f"SELECT file_name,logs FROM sma_stat_dep.tbl_files \
+                             WHERE id = {file_id};"
+
+        # Inserting into database 
+        with psycopg2.connect(dbname=self.db_name, 
+                user=self.db_user, password=self.db_pass, \
+                host=self.db_host) as conn:
+            print (f'   #>{datetime.now()}_conneciton to db ' 
+                    'is set.') 
+            try:
+                with conn.cursor() as cursor:
+                    #check if IDs for the bank, period and version exists    
+                    cursor.execute (report_type_query)
+                    res = cursor.fetchone() 
+                    res = {
+                        "file_name":res[0],
+                        "file_logs":res[1]
+                    }
+                    print(res)
+                    return res
+            except(Exception, psycopg2.Error) as error: 
+                print(error)
+                return error
                 
 #================================VERSIONS=====================================#        
     def create_version (self, code:str, name:str):
@@ -363,6 +392,233 @@ class Masterdata():
                 m+= ' report_type_id-bank_id-period_id-version_id'
                 m+= f' already exists (schedule exists)! exit'
                 print(m)
+        return False
+    
+    #===============================MONITOR REPORTS==============================#
+    def monitor_reports (self,bank_object=None):
+        arguments = ''
+        for el in bank_object.keys():
+            if(el=='from_date'):
+                arguments += f" and {el}>=%s"
+            elif(el=='to_date'):
+                arguments += f" and {el}<=%s"
+            elif(el=='report_code'):
+                arguments += f" and db_stat_dep.sma_stat_dep.tbl_report_type.code=%s"
+            else:
+                arguments += f" and {el}=%s"
+        arguments = arguments[4:]
+        print(arguments)
+        insert_query = f"select db_stat_dep.sma_stat_dep.tbl_schedule.id as schedule_id,\
+            db_stat_dep.sma_stat_dep.tbl_file_per_schedule.file_id as fps_file_id,\
+            db_stat_dep.sma_stat_dep.tbl_report_type.code,\
+            db_stat_dep.sma_stat_dep.tbl_files.upload_status,\
+            db_stat_dep.sma_stat_dep.tbl_entities.name,\
+            db_stat_dep.sma_stat_dep.tbl_entities.bic4,\
+            db_stat_dep.sma_stat_dep.tbl_schedule.reporting_window,\
+            db_stat_dep.sma_stat_dep.tbl_period.from_date,\
+            db_stat_dep.sma_stat_dep.tbl_period.to_date\
+            from db_stat_dep.sma_stat_dep.tbl_schedule\
+            left join db_stat_dep.sma_stat_dep.tbl_file_per_schedule\
+                on db_stat_dep.sma_stat_dep.tbl_schedule.id=db_stat_dep.sma_stat_dep.tbl_file_per_schedule.schedule_id \
+            left join db_stat_dep.sma_stat_dep.tbl_files\
+                on db_stat_dep.sma_stat_dep.tbl_files.id=db_stat_dep.sma_stat_dep.tbl_file_per_schedule.file_id\
+            left join db_stat_dep.sma_stat_dep.tbl_entities\
+                on db_stat_dep.sma_stat_dep.tbl_schedule.bank_id=db_stat_dep.sma_stat_dep.tbl_entities.id\
+            left join db_stat_dep.sma_stat_dep.tbl_report_type\
+                on db_stat_dep.sma_stat_dep.tbl_schedule.report_type_id=db_stat_dep.sma_stat_dep.tbl_report_type.id\
+            left join db_stat_dep.sma_stat_dep.tbl_period\
+                on db_stat_dep.sma_stat_dep.tbl_schedule.period_id=db_stat_dep.sma_stat_dep.tbl_period.id \
+        where {arguments} "
+        
+        insert_values = list(bank_object.values())
+        # insert_values = ['2024-08-01', '2024-08-31', '4915', '1A']
+        # print(insert_query)
+        # print(insert_values)
+        # Inserting into database 
+        with psycopg2.connect(dbname=self.db_name, 
+                user=self.db_user, password=self.db_pass, \
+                host=self.db_host) as conn:
+            print (f'   #>{datetime.now()}_conneciton to db ' 
+                    'is set.') 
+            try:
+                with conn.cursor() as cursor:
+                    cursor.execute (insert_query, insert_values)
+                    # cursor.execute (insert_query)
+                    print(cursor.fetchall())
+                    print (f'   #>{datetime.now()}_cursor '
+                            'execution is successful.')
+                    return True
+            except psycopg2.errors.UniqueViolation as e: 
+                print(f'   #>{datetime.now()}_the entity already exists! exit')
+        return False
+    
+
+    #===============================UPDATE BANK==============================#
+    def update_bank (self,bank_object):
+        m = f'   #>{datetime.now()}_creating bank with ID {bank_object['entity_id']}'
+        print (m)
+        arguments = ''
+        for el in bank_object.keys():
+            if(el=='entity_id'):
+                continue
+            arguments += f",{el}=%s"
+        arguments = arguments[1:]
+        insert_query = f"UPDATE sma_stat_dep.tbl_entities SET {arguments} WHERE id={bank_object['entity_id']}"
+        insert_values = list(bank_object.values())[1:]
+
+        # Inserting into database 
+        with psycopg2.connect(dbname=self.db_name, 
+                user=self.db_user, password=self.db_pass, \
+                host=self.db_host) as conn:
+            print (f'   #>{datetime.now()}_conneciton to db ' 
+                    'is set.') 
+            try:
+                with conn.cursor() as cursor:
+                    cursor.execute (insert_query, insert_values)
+                    print (f'   #>{datetime.now()}_cursor '
+                            'execution is successful.')
+                    return True
+            except psycopg2.errors.UniqueViolation as e: 
+                print(f'   #>{datetime.now()}_the entity already exists! exit')
+        return False
+    
+    #===============================UPDATE REPORTing WINDOW==============================#
+    def update_schedule (self,schedule_id,reporting_window):
+        m = f'   #>{datetime.now()}_updating schedule with ID {schedule_id}'
+        print (m)
+        insert_query = "UPDATE sma_stat_dep.tbl_schedule SET reporting_window=%s WHERE id=%s"
+        insert_values = [reporting_window,schedule_id]
+
+        # Inserting into database 
+        with psycopg2.connect(dbname=self.db_name, 
+                user=self.db_user, password=self.db_pass, \
+                host=self.db_host) as conn:
+            print (f'   #>{datetime.now()}_conneciton to db ' 
+                    'is set.') 
+            try:
+                with conn.cursor() as cursor:
+                    cursor.execute (insert_query, insert_values)
+                    print (f'   #>{datetime.now()}_cursor '
+                            'execution is successful.')
+                    return True
+            except psycopg2.errors.UniqueViolation as e: 
+                print(f'   #>{datetime.now()}_the schedule already exists! exit')
+        return False
+    
+    #===============================UPDATE ENT NAME==============================#
+    def update_ent (self,ent_id,ent_name):
+        m = f'   #>{datetime.now()}_updating schedule with ID {ent_id}'
+        print (m)
+        insert_query = "UPDATE sma_stat_dep.tbl_ent SET name=%s WHERE id=%s"
+        insert_values = [ent_name,ent_id]
+
+        # Inserting into database 
+        with psycopg2.connect(dbname=self.db_name, 
+                user=self.db_user, password=self.db_pass, \
+                host=self.db_host) as conn:
+            print (f'   #>{datetime.now()}_conneciton to db ' 
+                    'is set.') 
+            try:
+                with conn.cursor() as cursor:
+                    cursor.execute (insert_query, insert_values)
+                    print (f'   #>{datetime.now()}_cursor '
+                            'execution is successful.')
+                    return True
+            except psycopg2.errors.UniqueViolation as e: 
+                print(f'   #>{datetime.now()}_the schedule already exists! exit')
+        return False
+
+    #===============================DELETE SCHEDULe==============================#
+    def delete_schedule (self,schedule_id):
+        m = f'   #>{datetime.now()}_updating schedule with ID {schedule_id}'
+        print (m)
+        
+        # insert_values = [reporting_window,schedule_id]
+
+        # Inserting into database 
+        with psycopg2.connect(dbname=self.db_name, 
+                user=self.db_user, password=self.db_pass, \
+                host=self.db_host) as conn:
+            print (f'   #>{datetime.now()}_conneciton to db ' 
+                    'is set.') 
+            try:
+                with conn.cursor() as cursor:
+                    get_file_per_sch_query = f"select * from sma_stat_dep.tbl_file_per_schedule WHERE schedule_id={schedule_id}"
+                    cursor.execute (get_file_per_sch_query)
+                    if(cursor.fetchone()==None):
+                        # cursor.execute (insert_query, insert_values)
+                        delete_sch_query = f"delete from sma_stat_dep.tbl_schedule WHERE id={schedule_id}"
+                        cursor.execute (delete_sch_query)
+                        print (f'   #>{datetime.now()}_cursor '
+                                'execution is successful.')
+                    else:
+                        raise Exception(f'   #>{datetime.now()}_cursor '
+                                'for this schedule exist datas.')
+                    return True
+            except psycopg2.errors.UniqueViolation as e: 
+                print(e)
+        return False
+    
+    #===============================DELETE PERIOD==============================#
+    def delete_period (self,period_id):
+        m = f'   #>{datetime.now()}_updating schedule with ID {period_id}'
+        print (m)
+        
+        # insert_values = [reporting_window,schedule_id]
+
+        # Inserting into database 
+        with psycopg2.connect(dbname=self.db_name, 
+                user=self.db_user, password=self.db_pass, \
+                host=self.db_host) as conn:
+            print (f'   #>{datetime.now()}_conneciton to db ' 
+                    'is set.') 
+            try:
+                with conn.cursor() as cursor:
+                    get_sch_query = f"select * from sma_stat_dep.tbl_schedule WHERE period_id={period_id}"
+                    cursor.execute (get_sch_query)
+                    if(cursor.fetchone()==None):
+                        # cursor.execute (insert_query, insert_values)
+                        delete_sch_query = f"delete from sma_stat_dep.tbl_period WHERE id={period_id}"
+                        cursor.execute (delete_sch_query)
+                        print (f'   #>{datetime.now()}_cursor '
+                                'execution is successful.')
+                    else:
+                        raise Exception(f'   #>{datetime.now()}_cursor '
+                                'for this period exist schedules.')
+                    return True
+            except psycopg2.errors.UniqueViolation as e: 
+                print(e)
+        return False
+    
+    #===============================DELETE ENTITIE==============================#
+    def delete_entitie (self,entitie_id):
+        m = f'   #>{datetime.now()}_updating schedule with ID {entitie_id}'
+        print (m)
+        
+        # insert_values = [reporting_window,schedule_id]
+
+        # Inserting into database 
+        with psycopg2.connect(dbname=self.db_name, 
+                user=self.db_user, password=self.db_pass, \
+                host=self.db_host) as conn:
+            print (f'   #>{datetime.now()}_conneciton to db ' 
+                    'is set.') 
+            try:
+                with conn.cursor() as cursor:
+                    get_sch_query = f"select * from sma_stat_dep.tbl_schedule WHERE period_id={entitie_id}"
+                    cursor.execute (get_sch_query)
+                    if(cursor.fetchone()==None):
+                        # cursor.execute (insert_query, insert_values)
+                        delete_sch_query = f"delete from sma_stat_dep.tbl_entities WHERE id={entitie_id}"
+                        cursor.execute (delete_sch_query)
+                        print (f'   #>{datetime.now()}_cursor '
+                                'execution is successful.')
+                    else:
+                        raise Exception(f'   #>{datetime.now()}_cursor '
+                                'for this entitie exist schedules.')
+                    return True
+            except psycopg2.errors.UniqueViolation as e: 
+                print(e)
         return False
     
 #=============================================================================#
@@ -651,6 +907,7 @@ if (__name__ == '__main__'):
     
     
     master_date = Masterdata(email_conf)
+    
 
     # master_date.create_version('ORIG', 'ҳисоботҳои дар шакли ҳамадавраҳа')
     
@@ -667,24 +924,38 @@ if (__name__ == '__main__'):
    # master_date.create_report_type("1A", "v0.000","Ҳайяти кормандон", conf, 4, 0)
 
     #print (master_date.validate_config())
-    master_date.map_to_template(conf=conf,wb_path=tmpl, worksheet_pass="stat4omor")
+    # master_date.map_to_template(conf=conf,wb_path=tmpl, worksheet_pass="stat4omor")
+
+    # master_date.get_file(907)
 
 
 
 
 
+    
+# master_date.update_bank({'entity_id':80,'type':1, 'code':'0000000086','bic4':'1111','name':'ҶСП "Мой банк!"','label_id':0, 'status':1})
+# master_date.update_bank({'entity_id':80,'bic4':'112','status':1})
+# master_date.update_schedule (1,350)
+# master_date.update_ent (1,"")
+# master_date.delete_schedule(1)
+# master_date.delete_period(1)
+# master_date.delete_entitie(80)
+# master_date.monitor_reports({'from_date':'2024-08-01', 'bic4':'4915','to_date':'2024-08-31','report_code':'1A'})
+# master_date.monitor_reports({'bic4':'4915'})
+# master_date.get_file_logs(890)
 
 
 
-
-
-bics = [1,'00000001',1101,'Бонки миллии Тоҷикистон',0,1],[1,'00000002',1369,'ҶСК "Ориёнбонк"',0,1],[1,'00000003',1626,'БДА ҶТ "Амонатбонк"',0,1],[1,'00000004',5707,'ҶСК "Бонки Эсхата"',0,1],[1,'00000005',1805,'ҶСП "Аввалин бонки молиявии хурд"',0,1],[1,'00000006',1736,'ҶСП "Бонки рушди Тоҷикистон"',0,1],[1,'00000007',1706,'Филиали бонки "Тиҷорат"-и  ҶИЭ дар ш. Душанбе',0,1],[1,'00000008',1779,'ҶСП "Халиқ Бонк Тоҷикистон"',0,1],[1,'00000009',1799,'ҶСП "Кафолатбонк"',0,1],[1,'000000010',5848,'ҶСП Бонки "Арванд"',0,1],[1,'000000011',1808,'ҶСП "Спитамен Бонк" ',0,1],[1,'000000012',1803,'ҶСП "Бонки байналмилалии Тоҷикистон"',0,1],[1,'000000013',1858,'ҶСК "Коммерсбонки Тоҷикистон" ',0,1],[1,'000000014',1900,'ҶСК "Алиф Бонк"',0,1],[1,'000000015',1655,'КВДБССТ "Саноатсодиротбонк"',0,1],[2,'000000016',1841,'ҶСП "Душанбе Сити Бонк"',0,1],[1,'000000017',1820,'ҶДММ ТҚҒ "Васл" ',0,1],[3,'000000018',1720,'ҶСК "Тавҳидбонк"',0,1],[3,'000000019',1823,'ҶДММ ТАҚХ"Зудамал"',0,1],[3,'000000020',5859,'ҶДММ ТАҚХ "Азизӣ-Молия"',0,1],[3,'000000021',1890,'ҶДММ ТАҚХ "Сарват М"',0,1],[3,'000000022',1891,'ҶДММ ТАҚХ "Тезинфоз"',0,1],[3,'000000023',1895,'ҶСП ТАҚХ "Ардо-капитал"',0,1],[3,'000000024',1899,'ҶДММ ТАҚХ "Пайванд гурух"',0,1],[3,'000000025',1875,'ҶДММ ТАҚХ "ФИНКА"',0,1],[3,'000000026',1892,'ҶСП ТАҚХ "Ҳумо"',0,1],[3,'000000027',1878,'ҶДММ ТАҚХ "Фазо С"',0,1],[3,'000000028',1817,'ҶСП ТАҚХ "Ҳамров"',0,1],[3,'000000029',1872,'ҶДММ ТАҚХ "Сомон-Тиҷорат"',0,1],[3,'000000030',1970,'ҶДММ ТАҚХ "Шукр Молия"',0,1],[3,'000000031',1971,'ҶДММ ТАҚХ "ЭМИН-сармоя"',0,1],[3,'000000032',1972,'ҶДММ ТАҚХ "Баракат Молия"',0,1],[3,'000000033',4910,'ЧДММ  ТАКХ  "Фуруз"',0,1],[3,'000000034',5876,'ҶСП ТАҚХ "Имон Интернешнл"',0,1],[3,'000000035',1857,'ҶДММ ТАҚХ "Арғун"',0,1],[3,'000000036',5849,'ҶДММ ТАҚХ "МАТИН"',0,1],[3,'000000037',5880,'ҶДММ ТАҚХ "Сандуқ"',0,1],[4,'000000038',1870,'ҶДММ ТАҚХ "Тамвил"',0,1],[4,'000000039',1907,'ҶДММ ТҚХ "ОКСУС"',0,1],[4,'000000040',4909,'ҶДММ ТҚХ "Меҳнатобод"',0,1],[5,'000000041','0904','ҶДММ ТҚХ "Рушди Куҳистон"',0,1],[5,'000000042',1901,'ФҚХ "НУРИ ҲУМО"',0,1],[5,'000000043',1904,'ФҚХ "Зар"',0,1],[5,'000000044',1924,'ФҚХ "ИМДОДИ ХУТАЛ"',0,1],[5,'000000045',1925,'ФҚХ "Эҳёи кӯҳистон"',0,1],[5,'000000046',1932,'ФҚХ "Қуллаи Умед"',0,1],[5,'000000047',1965,'ФҚХ "Фонди бозтамвил"',0,1],[5,'000000048',2902,'ФҚХ "СОЛИҲИН"',0,1],[5,'000000049',2906,'ФҚХ "Мададгор-Д"',0,1],[5,'000000050',4901,'ФҚХ "Боршуд"',0,1],[5,'000000051',4902,'ФҚХ "Имконият"',0,1],[5,'000000052',4903,'ФҚХ "Чилучор Чашма"',0,1],[5,'000000053',4911,'ФҚХ "ЗАЙНАЛОБИДДИН 1"',0,1],[5,'000000054',4914,'ФҚХ "ПАХТАОБОД"',0,1],[5,'000000055',4915,'ФҚХ "ДЕХКОНАРИК"',0,1],[5,'000000056',4916,'ФҚХ "САРВАТИ ВАХШ"',0,1],[5,'000000057',4917,'ФҚХ "ТУГАРАКИЁН"',0,1],[5,'000000058',5901,'ФҚХ "Имон"',0,1],[5,'000000059',5902,'ФҚХ "Сарпараст"',0,1],[5,'000000060',5903,'ФҚХ "МикроИнвест"',0,1],[5,'000000061',5906,'ФҚХ "Равнақ"',0,1],[5,'000000062',5907,'ФҚХ "Ҳамёрӣ"',0,1],[5,'000000063',5908,'ФҚХ "Барор"',0,1],[5,'000000064',5912,'ФҚХ "Рушди Суғд"',0,1]
+bics = [1,'00000001',1101,'Бонки миллии Тоҷикистон',0,1],[1,'00000002',1369,'ҶСК "Ориёнбонк"',0,1],[1,'00000003',1626,'БДА ҶТ "Амонатбонк"',0,1],[1,'00000004',5707,'ҶСК "Бонки Эсхата"',0,1],[1,'00000005',1805,'ҶСП "Аввалин бонки молиявии хурд"',0,1],[1,'00000006',1736,'ҶСП "Бонки рушди Тоҷикистон"',0,1],[1,'00000007',1706,'Филиали бонки "Тиҷорат"-и  ҶИЭ дар ш. Душанбе',0,1],[1,'00000008',1779,'ҶСП "Халиқ Бонк Тоҷикистон"',0,1],[1,'00000009',1799,'ҶСП "Кафолатбонк"',0,1],[1,'000000010',5848,'ҶСП Бонки "Арванд"',0,1],[1,'000000011',1808,'ҶСП "Спитамен Бонк" ',0,1],[1,'000000012',1803,'ҶСП "Бонки байналмилалии Тоҷикистон"',0,1],[1,'000000013',1858,'ҶСК "Коммерсбонки Тоҷикистон" ',0,1],[1,'000000014',1900,'ҶСК "Алиф Бонк"',0,1],[1,'000000015',1655,'КВДБССТ "Саноатсодиротбонк"',0,1],[2,'000000016',1841,'ҶСП "Душанбе Сити Бонк"',0,1],[1,'000000017',1820,'ҶДММ ТҚҒ "Васл" ',0,1],[3,'000000018',1720,'ҶСК "Тавҳидбонк"',0,1],[3,'000000019',1823,'ҶДММ ТАҚХ"Зудамал"',0,1],[3,'000000020',5859,'ҶДММ ТАҚХ "Азизӣ-Молия"',0,1],[3,'000000021',1890,'ҶДММ ТАҚХ "Сарват М"',0,1],[3,'000000022',1891,'ҶДММ ТАҚХ "Тезинфоз"',0,1],[3,'000000023',1895,'ҶСП ТАҚХ "Ардо-капитал"',0,1],[3,'000000024',1899,'ҶДММ ТАҚХ "Пайванд гурух"',0,1],[3,'000000025',1875,'ҶДММ ТАҚХ "ФИНКА"',0,1],[3,'000000026',1892,'ҶСП ТАҚХ "Ҳумо"',0,1],[3,'000000027',1878,'ҶДММ ТАҚХ "Фазо С"',0,1],[3,'000000028',1817,'ҶСП ТАҚХ "Ҳамров"',0,1],[3,'000000029',1872,'ҶДММ ТАҚХ "Сомон-Тиҷорат"',0,1],[3,'000000030',1970,'ҶДММ ТАҚХ "Шукр Молия"',0,1],[3,'000000031',1971,'ҶДММ ТАҚХ "ЭМИН-сармоя"',0,1],[3,'000000032',1972,'ҶДММ ТАҚХ "Баракат Молия"',0,1],[3,'000000033',4910,'ЧДММ  ТАКХ  "Фуруз"',0,1],[3,'000000034',5876,'ҶСП ТАҚХ "Имон Интернешнл"',0,1],[3,'000000035',1857,'ҶДММ ТАҚХ "Арғун"',0,1],[3,'000000036',5849,'ҶДММ ТАҚХ "МАТИН"',0,1],[3,'000000037',5880,'ҶДММ ТАҚХ "Сандуқ"',0,1],[4,'000000038',1870,'ҶДММ ТАҚХ "Тамвил"',0,1],[4,'000000039',1907,'ҶДММ ТҚХ "ОКСУС"',0,1],[4,'000000040',4909,'ҶДММ ТҚХ "Меҳнатобод"',0,1],[5,'000000041','0904','ҶДММ ТҚХ "Рушди Куҳистон"',0,1],[5,'000000042',1901,'ФҚХ "НУРИ ҲУМО"',0,1],[5,'000000043',1904,'ФҚХ "Зар"',0,1],[5,'000000044',1924,'ФҚХ "ИМДОДИ ХУТАЛ"',0,1],[5,'000000045',1925,'ФҚХ "Эҳёи кӯҳистон"',0,1],[5,'000000046',1932,'ФҚХ "Қуллаи Умед"',0,1],[5,'000000047',1965,'ФҚХ "Фонди бозтамвил"',0,1],[5,'000000048',2902,'ФҚХ "СОЛИҲИН"',0,1],[5,'000000049',2906,'ФҚХ "Мададгор-Д"',0,1],[5,'000000050',4901,'ФҚХ "Боршуд"',0,1],[5,'000000051',4902,'ФҚХ "Имконият"',0,1],[5,'000000052',4903,'ФҚХ "Чилучор Чашма"',0,1],[5,'000000053',4911,'ФҚХ "ЗАЙНАЛОБИДДИН 1"',0,1],[5,'000000054',4914,'ФҚХ "ПАХТАОБОД"',0,1],[5,'000000055',4915,'ФҚХ "ДЕХКОНАРИК"',0,1],[5,'000000056',4916,'ФҚХ "САРВАТИ ВАХШ"',0,1],[5,'000000057',4917,'ФҚХ "ТУГАРАКИЁН"',0,1],[5,'000000058',5901,'ФҚХ "Имон"',0,1],[5,'000000059',5902,'ФҚХ "Сарпараст"',0,1],[5,'000000060',5903,'ФҚХ "МикроИнвест"',0,1],[5,'000000061',5906,'ФҚХ "Равнақ"',0,1],[5,'000000062',5907,'ФҚХ "Ҳамёрӣ"',0,1],[5,'000000063',5908,'ФҚХ "Барор"',0,1],[5,'000000064',5912,'ФҚХ "Рушди Суғд"',0,1],[5,'000000065',5913,'ФҚХ "Рушди Водии Зарафшон"',0,1],[5,'000000066',1957,'ФҚХ "Роҳнамо"',0,1],[5,'000000067','0901','ФҚХ "Мадина"',0,1]
 
 periods = [1,2,3,4,5,6,7,8,9,10,11,23]
 
+# master_date.create_shedule (2, 78, 1, 1, 300)
 # for period in periods:
+    # master_date.create_shedule (2, 76, period, 1, 350)
 #     for bank_id in range(2,76):
-        # master_date.create_shedule (2, bank_id, period, 1, 200)
+#         master_date.create_shedule (3, bank_id, period, 1, 350)
+
 
 
 
