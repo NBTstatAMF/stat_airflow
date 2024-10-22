@@ -251,7 +251,7 @@ class Masterdata():
                     #check if IDs for the bank, period and version exists    
                     cursor.execute (report_type_query)
                     res = cursor.fetchone()
-                    file_name = res[0]
+                    file_name = f'{file_id}_{res[0]}'
                     file = res[1]
                     workbook_xml = BytesIO(bytes(file)) 
                     workbook_xml.seek(0)
@@ -285,6 +285,7 @@ class Masterdata():
                     cursor.execute (report_type_query)
                     res = cursor.fetchone() 
                     res = {
+                        "file_id":file_id,
                         "file_name":res[0],
                         "file_logs":res[1]
                     }
@@ -414,9 +415,11 @@ class Masterdata():
             db_stat_dep.sma_stat_dep.tbl_files.upload_status,\
             db_stat_dep.sma_stat_dep.tbl_entities.name,\
             db_stat_dep.sma_stat_dep.tbl_entities.bic4,\
+            db_stat_dep.sma_stat_dep.tbl_entities.type,\
             db_stat_dep.sma_stat_dep.tbl_schedule.reporting_window,\
             db_stat_dep.sma_stat_dep.tbl_period.from_date,\
             db_stat_dep.sma_stat_dep.tbl_period.to_date\
+            db_stat_dep.sma_stat_dep.tbl_period.type\
             from db_stat_dep.sma_stat_dep.tbl_schedule\
             left join db_stat_dep.sma_stat_dep.tbl_file_per_schedule\
                 on db_stat_dep.sma_stat_dep.tbl_schedule.id=db_stat_dep.sma_stat_dep.tbl_file_per_schedule.schedule_id \
@@ -1007,3 +1010,22 @@ periods = [1,2,3,4,5,6,7,8,9,10,11,23]
 #     "4k.700_prev",
 #     "4k.700_curr"
 # ]:master_date.create_ent (el)
+
+
+
+
+
+# def misol_list(val,list=list()):
+#     list.append(val)
+#     return list
+# list1 = misol_list(10)
+# list2 = misol_list(111,[])
+# list3 = misol_list('a')
+
+# # print(list1)
+# print(list2)
+# print(list3)
+
+
+
+
