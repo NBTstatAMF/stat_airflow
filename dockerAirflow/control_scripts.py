@@ -256,11 +256,11 @@ class Masterdata():
                     workbook_xml = BytesIO(bytes(file)) 
                     workbook_xml.seek(0)
                         # print(openpyxl.load_workbook(workbook_xml))
-
+                    
                     wb = openpyxl.load_workbook(workbook_xml)
-
-                    wb.save(file_name)
-                    print(wb)
+                    file_path = Path(__file__).parent.parent /'files'/ file_name
+                    wb.save(file_path)
+                    print (f'   #>{datetime.now()}_file was created: {file_path}')
                     wb.close()
                     return wb
             except(Exception, psycopg2.Error) as error: 
@@ -289,8 +289,12 @@ class Masterdata():
                         "file_name":res[0],
                         "file_logs":res[1]
                     }
-                    print(res)
-                    return res
+                    # print(res[0])
+                    file_path = Path(__file__).parent.parent /'files'/ f'{res["file_id"]}_{res['file_name'][:-5]}.txt'
+                    with open(file_path,'w') as file:
+                        file.write(res['file_logs'])
+
+                    return f'{res["file_id"]}_{res['file_name'][:-5]}.txt','w'
             except(Exception, psycopg2.Error) as error: 
                 print(error)
                 return error
@@ -929,7 +933,7 @@ if (__name__ == '__main__'):
     #print (master_date.validate_config())
     # master_date.map_to_template(conf=conf,wb_path=tmpl, worksheet_pass="stat4omor")
 
-    # master_date.get_file(907)
+    # master_date.get_file(890)
 
 
 
@@ -945,7 +949,7 @@ if (__name__ == '__main__'):
 # master_date.delete_entitie(80)
 # master_date.monitor_reports({'from_date':'2024-08-01', 'bic4':'4915','to_date':'2024-08-31','report_code':'1A'})
 # master_date.monitor_reports({'bic4':'4915'})
-# master_date.get_file_logs(890)
+master_date.get_file_logs(890)
 
 
 
@@ -1025,7 +1029,3 @@ periods = [1,2,3,4,5,6,7,8,9,10,11,23]
 # # print(list1)
 # print(list2)
 # print(list3)
-
-
-
-
