@@ -400,7 +400,7 @@ class Masterdata():
         return False
     
     #===============================MONITOR REPORTS==============================#
-    def monitor_reports (self,bank_object=None):
+    def monitor_report (self,bank_object=None):
         arguments = ''
         for el in bank_object.keys():
             if(el=='from_date'):
@@ -412,18 +412,18 @@ class Masterdata():
             else:
                 arguments += f" and {el}=%s"
         arguments = arguments[4:]
-        print(arguments)
-        insert_query = f"select db_stat_dep.sma_stat_dep.tbl_schedule.id as schedule_id,\
+        print(f'   #>{datetime.now()}_monitor_report arguments: {arguments}')
+        select_query = f"select db_stat_dep.sma_stat_dep.tbl_schedule.id as schedule_id,\
             db_stat_dep.sma_stat_dep.tbl_file_per_schedule.file_id as fps_file_id,\
-            db_stat_dep.sma_stat_dep.tbl_report_type.code,\
-            db_stat_dep.sma_stat_dep.tbl_files.upload_status,\
-            db_stat_dep.sma_stat_dep.tbl_entities.name,\
-            db_stat_dep.sma_stat_dep.tbl_entities.bic4,\
-            db_stat_dep.sma_stat_dep.tbl_entities.type,\
-            db_stat_dep.sma_stat_dep.tbl_schedule.reporting_window,\
-            db_stat_dep.sma_stat_dep.tbl_period.from_date,\
-            db_stat_dep.sma_stat_dep.tbl_period.to_date\
-            db_stat_dep.sma_stat_dep.tbl_period.type\
+            db_stat_dep.sma_stat_dep.tbl_files.upload_status as upload_status,\
+            db_stat_dep.sma_stat_dep.tbl_report_type.code as report_code,\
+            db_stat_dep.sma_stat_dep.tbl_entities.type as entity_type,\
+            db_stat_dep.sma_stat_dep.tbl_entities.bic4 as bic4,\
+            db_stat_dep.sma_stat_dep.tbl_entities.name as name,\
+            db_stat_dep.sma_stat_dep.tbl_period.type as period_type,\
+            db_stat_dep.sma_stat_dep.tbl_period.from_date as from_date,\
+            db_stat_dep.sma_stat_dep.tbl_period.to_date as to_date,\
+            db_stat_dep.sma_stat_dep.tbl_schedule.reporting_window as reporting_window\
             from db_stat_dep.sma_stat_dep.tbl_schedule\
             left join db_stat_dep.sma_stat_dep.tbl_file_per_schedule\
                 on db_stat_dep.sma_stat_dep.tbl_schedule.id=db_stat_dep.sma_stat_dep.tbl_file_per_schedule.schedule_id \
@@ -437,7 +437,8 @@ class Masterdata():
                 on db_stat_dep.sma_stat_dep.tbl_schedule.period_id=db_stat_dep.sma_stat_dep.tbl_period.id \
         where {arguments} "
         
-        insert_values = list(bank_object.values())
+        query_values = list(bank_object.values())
+        print(f'   #>{datetime.now()}_monitor_report arguments: {query_values}')
         # insert_values = ['2024-08-01', '2024-08-31', '4915', '1A']
         # print(insert_query)
         # print(insert_values)
@@ -449,12 +450,11 @@ class Masterdata():
                     'is set.') 
             try:
                 with conn.cursor() as cursor:
-                    cursor.execute (insert_query, insert_values)
+                    cursor.execute (select_query, query_values)
                     # cursor.execute (insert_query)
-                    print(cursor.fetchall())
                     print (f'   #>{datetime.now()}_cursor '
                             'execution is successful.')
-                    return True
+                    return cursor.fetchall()
             except psycopg2.errors.UniqueViolation as e: 
                 print(f'   #>{datetime.now()}_the entity already exists! exit')
         return False
@@ -939,17 +939,17 @@ if (__name__ == '__main__'):
 
 
 
-    
-# master_date.update_bank({'entity_id':80,'type':1, 'code':'0000000086','bic4':'1111','name':'ҶСП "Мой банк!"','label_id':0, 'status':1})
-# master_date.update_bank({'entity_id':80,'bic4':'112','status':1})
-# master_date.update_schedule (1,350)
-# master_date.update_ent (1,"")
-# master_date.delete_schedule(1)
-# master_date.delete_period(1)
-# master_date.delete_entitie(80)
-# master_date.monitor_reports({'from_date':'2024-08-01', 'bic4':'4915','to_date':'2024-08-31','report_code':'1A'})
-# master_date.monitor_reports({'bic4':'4915'})
-master_date.get_file_logs(890)
+        
+    # master_date.update_bank({'entity_id':80,'type':1, 'code':'0000000086','bic4':'1111','name':'ҶСП "Мой банк!"','label_id':0, 'status':1})
+    # master_date.update_bank({'entity_id':80,'bic4':'112','status':1})
+    # master_date.update_schedule (1,350)
+    # master_date.update_ent (1,"")
+    # master_date.delete_schedule(1)
+    # master_date.delete_period(1)
+    # master_date.delete_entitie(80)
+    # master_date.monitor_report({'from_date':'2024-08-01', 'bic4':'4915','to_date':'2024-08-31','report_code':'1A'})
+    # master_date.monitor_report({'bic4':'4915'})
+    master_date.get_file_logs(890)
 
 
 
