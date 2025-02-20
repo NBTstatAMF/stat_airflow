@@ -11,11 +11,25 @@ import io
 import pandas as pd
 import json 
 import traceback
+from pathlib import Path
 import collections 
 
 def get_hello():
     try:
-        connection = psycopg2.connect(user="docker",password="stat4omor",host="172.18.101.189",port="5432", database="db_stat_dep")
+        path = Path(__file__).parent.parent.parent
+        print (f'path of config file:  {path}')
+        conf = json.load (open(path / ("config/email_conf.json")))  
+        db_host = conf["db_host"]
+        db_port = conf["db_port"]
+        db_name = conf["db_name"]
+        db_user = conf["db_user"]
+        db_pass = conf["db_pass"]
+
+        connection = psycopg2.connect(user=db_user,
+                                                    password=db_pass,
+                                                    host=db_host,
+                                                    port=db_port,
+                                                    database=db_name)
         cursor = connection.cursor()
 
         configs = {
@@ -788,11 +802,10 @@ def get_hello():
                 cursor.close()
                 connection.close()
                 print("PostgreSQL connection is closed")
-    
-get_hello()
+if __name__==  "main":
+    get_hello()
 
 # def get_plugin():
 #     from airflow_clickhouse_plugin.operators.clickhouse import ClickHouseOperator
 #     print(f"clickhouseOperator!!!!!!! with version: {ClickHouseOperator.__class__}")
-
 
