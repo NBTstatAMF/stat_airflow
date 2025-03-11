@@ -3,6 +3,7 @@ import psycopg2
 from io import BytesIO
 import openpyxl
 from openpyxl.styles.protection import Protection
+from pathlib import Path
 # from  modules.my_excel_conf import excel_my_cnfg
 # from  modules.conf import exportFile
 from psycopg2.extras import execute_values
@@ -15,7 +16,20 @@ import collections
 
 def get_hello():
     try:
-        connection = psycopg2.connect(user="docker",password="stat4omor",host="172.18.101.189",port="5432", database="db_stat_dep")
+        path = Path(__file__).parent.parent.parent
+        print (f'path of config file:  {path}')
+        conf = json.load (open(path / ("config/email_conf.json")))  
+        db_host = conf["db_host"]
+        db_port = conf["db_port"]
+        db_name = conf["db_name"]
+        db_user = conf["db_user"]
+        db_pass = conf["db_pass"]
+
+        connection = psycopg2.connect(user=db_user,
+                                                    password=db_pass,
+                                                    host=db_host,
+                                                    port=db_port,
+                                                    database=db_name)
         cursor = connection.cursor()
 
         configs = {
@@ -93,6 +107,11 @@ def get_hello():
             "0205":{
                 "en":"",
                 "ru":"Для получения данного отчета не существует расписание \n",
+                "tj":"" 
+            },
+            "0206":{
+                "en":"",
+                "ru":"Период указан неправильно \n",
                 "tj":"" 
             },
         }
@@ -259,6 +278,7 @@ def get_hello():
                     arg = check_file_name(mobile_records[3]) 
                     report = selectOne('tbl_report_type','code',arg['name'],'id,report_period_type,submition_mode') 
                     bank_id = selectOne('tbl_entities','bic4',arg['bic4'])
+                    period_id = selectOne('tbl_period',None,f"type={report[1]} and to_date="+f"'{arg['date']}'")
 
                     print(f"    отчет и его аргументы из названия--- {arg}")
                     print(f"    подробности отчета из БД report_type--- {report}")
@@ -268,10 +288,12 @@ def get_hello():
                         raise Exception('Такой банк не существует')
                     if(report is None):
                         raise Exception(configs['errors']['0203']['ru'])
+                    if(period_id is None):
+                        raise Exception(configs['errors']['0206']['ru'])
                     
 
                     
-                    period_id = selectOne('tbl_period',None,f"type={report[1]} and to_date="+f"'{arg['date']}'")
+                    
                     postgres_insert_query = f"select * from sma_stat_dep.tbl_schedule WHERE bank_id={bank_id} AND period_id={period_id} AND report_type_id={report[0]}"
                     
                     cursor.execute(postgres_insert_query)
@@ -283,7 +305,7 @@ def get_hello():
                     connection.commit()
                     print(f"    банк из БД entity--- {schedule_records}")
 
-                    if(datetime.today().date()>to_date+timedelta(days=schedule_records[5])):
+                    if(schedule_records!=None and datetime.today().date()>to_date+timedelta(days=schedule_records[5])):
                         status = 5
                         logs["context"]=configs['errors']['0201']['ru']    
                         logs["count"]+=1
@@ -732,7 +754,7 @@ def get_hello():
                         connection.commit()
                     else:
                         status = 5
-                        logs["context"]+=configs['errors']['0204']['ru']    
+                        logs["context"]+=configs['errors']['0205']['ru']    
                         logs["count"]+=1
                         log_to_text = f"Дата и время получения файла -------------------- {logs['upload_date']}\n\n {logs['context']}\n количество найденных ошибок ---------------------------{(logs['count']+logs['comparisen_rules_count'])}" 
                         postgres_insert_query = f"""UPDATE sma_stat_dep.tbl_files SET logs='{log_to_text}', upload_status='{status}' WHERE id='{file_id}';"""
@@ -741,7 +763,7 @@ def get_hello():
                         postgres_insert_query1 = f"""UPDATE sma_stat_dep.tbl_file_upload SET upload_status='{status}' WHERE id='{file_upload_id}';"""
                         cursor.execute(postgres_insert_query1) 
                         connection.commit()
-                        raise Exception(configs['errors']['0204']['ru'])
+                        raise Exception(configs['errors']['0205']['ru'])
                 except (Exception, psycopg2.Error) as error: 
                     print("Error while fetching data from PostgreSQL", error,traceback.print_exc())
                     status = 5
@@ -788,11 +810,9 @@ def get_hello():
                 cursor.close()
                 connection.close()
                 print("PostgreSQL connection is closed")
-    
-get_hello()
+if __name__ == "__main__":    
+    get_hello()
 
 # def get_plugin():
 #     from airflow_clickhouse_plugin.operators.clickhouse import ClickHouseOperator
 #     print(f"clickhouseOperator!!!!!!! with version: {ClickHouseOperator.__class__}")
-
-
