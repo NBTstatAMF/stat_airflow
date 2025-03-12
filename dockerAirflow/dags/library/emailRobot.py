@@ -298,7 +298,7 @@ class email_robot():
         msg = MIMEMultipart()
         msg['Subject'] = subject 
         msg['From'] = self.login
-        msg['To'] = re.findall(r"<[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+>", address)[0] 
+        msg['To'] = address 
         msg.attach(MIMEText(message))
 
         # work with attachement 
