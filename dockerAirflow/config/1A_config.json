@@ -1,0 +1,124 @@
+{
+    "config_version": "0",
+    "report_name": "1A",
+    "tables": [
+        {
+            "sheet_name":"январи 2023","table_id":"январи 2023", "table_type":"fixed"},
+        {
+            "sheet_name": "БД",
+            "table_id": "1A",
+            "table_type": "unfixed",
+            "nodes": [
+                {
+                    "code": "1A.tax",
+                    "attribute": [
+                        {
+                            "cell_address": "A7",
+                            "read_ender": true,
+                            "data_type": "int",
+                            "length": 7,
+                            "is_empty_allowed": false,
+                            "is_negative_allowed": false,
+                            "formula": "(wb['БД']['C161'].value+wb['БД']['C151'].value+wb['БД']['C131'].value)",
+                            
+                            "attr_type": "tax_code",
+                            "attr_value":"",
+                            "attr_allowed_value":[],
+                            "unit":null
+                        },
+                        {   
+                            "cell_address": "B7",
+                            "read_ender": true,
+                            "data_type": "int",
+                            "length": 7,
+                            "is_empty_allowed": false,
+                            "is_negative_allowed": false,
+                            "attr_type": "tax_name",
+                            "attr_allowed_value":[],
+                            "unit":null
+                        },
+                        {
+                            "cell_address": "C7",
+                            "read_ender": true,
+                            "data_type": "int",
+                            "length": 7,
+                            "is_empty_allowed": false,
+                            "is_negative_allowed": false,
+                            "attr_type": "place_code",
+                            "attr_allowed_value":[],
+                            "unit":null
+                        },
+                        {
+                            "cell_address": "D7",
+                            "read_ender": true,
+                            "data_type": "int",
+                            "length": 7,
+                            "is_empty_allowed": false,
+                            "is_negative_allowed": false,
+                            "attr_type": "account_code",
+                            "attr_allowed_value":[],
+                            "unit":null
+                        },
+                        {
+                            "cell_address": "E7",
+                            "read_ender": true,
+                            "data_type": "int",
+                            "length": 10,
+                            "is_empty_allowed": false,
+                            "is_negative_allowed": true,
+                            "attr_type": "start_balance",
+                            "attr_allowed_value":[],
+                            "unit":null
+                        },
+                        {
+                            "cell_address": "F7",
+                            "read_ender": true,
+                            "data_type": "int",
+                            "length": 10,
+                            "is_empty_allowed": true,
+                            "is_negative_allowed": false,
+                            "attr_type": "tax_calculated",
+                            "attr_allowed_value":[],
+                            "unit":null
+                        },
+                        {
+                            "cell_address": "G7",
+                            "read_ender": true,
+                            "data_type": "int",
+                            "length": 10,
+                            "is_empty_allowed": true,
+                            "is_negative_allowed": false,
+                            "attr_type": "prepayment",
+                            "attr_allowed_value":[],
+                            "unit":null
+                        },
+                        {
+                            "cell_address": "I7",
+                            "read_ender": true,
+                            "data_type": "int",
+                            "length": 10,
+                            "is_empty_allowed": true,
+                            "is_negative_allowed": false,
+                            "attr_type": "settlement",
+                            "attr_allowed_value":[],
+                            "unit":null
+                        },
+                        {
+                            "cell_address": "I7",
+                            "read_ender": true,
+                            "data_type": "int",
+                            "length": 10,
+                            "is_empty_allowed": true,
+                            "is_negative_allowed": true,
+                            "attr_type": "end_balance",
+                            "attr_allowed_value":[],
+                            "unit":null
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+
